@@ -1,0 +1,47 @@
+[
+{
+"d": "2026-09-29",
+"tipo": "Vitrina sobre consigna",
+"equipo": "Vitrina 1",
+"inicio": "21:41",
+"fin": "23:59",
+"min": 139,
+"detalle": "T producto hasta 4.0 K por encima de la consigna (fuera de desescarche)"
+},
+{
+"d": "2026-09-29",
+"tipo": "Presión baja",
+"equipo": "Anillo (entrada BdC)",
+"inicio": "00:00",
+"fin": "11:28",
+"min": 689,
+"detalle": "Presión mínima 0.86 bar (< 1.0 bar)"
+},
+{
+"d": "2026-09-29",
+"tipo": "Presión baja",
+"equipo": "Anillo (entrada BdC)",
+"inicio": "14:06",
+"fin": "23:59",
+"min": 594,
+"detalle": "Presión mínima 0.76 bar (< 1.0 bar)"
+},
+{
+"d": "2026-09-29",
+"tipo": "Presión baja",
+"equipo": "Anillo (entrada aero)",
+"inicio": "00:00",
+"fin": "11:29",
+"min": 689,
+"detalle": "Presión mínima 0.83 bar (< 1.0 bar)"
+},
+{
+"d": "2026-09-29",
+"tipo": "Presión baja",
+"equipo": "Anillo (entrada aero)",
+"inicio": "13:59",
+"fin": "23:59",
+"min": 601,
+"detalle": "Presión mínima 0.69 bar (< 1.0 bar)"
+}
+]

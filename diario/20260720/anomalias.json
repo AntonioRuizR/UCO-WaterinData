@@ -1,0 +1,119 @@
+[
+{
+"d": "2026-07-20",
+"tipo": "Vitrina apagada",
+"equipo": "Vitrina 1",
+"inicio": "13:47",
+"fin": "14:04",
+"min": 18,
+"detalle": "VIT_ONOFF = Falso"
+},
+{
+"d": "2026-07-20",
+"tipo": "Vitrina apagada",
+"equipo": "Vitrina 2",
+"inicio": "13:43",
+"fin": "14:04",
+"min": 22,
+"detalle": "VIT_ONOFF = Falso"
+},
+{
+"d": "2026-07-20",
+"tipo": "Vitrina sobre consigna",
+"equipo": "Vitrina 3",
+"inicio": "10:15",
+"fin": "11:17",
+"min": 63,
+"detalle": "T producto hasta 6.9 K por encima de la consigna (fuera de desescarche)"
+},
+{
+"d": "2026-07-20",
+"tipo": "Vitrina apagada",
+"equipo": "Vitrina 3",
+"inicio": "13:43",
+"fin": "14:04",
+"min": 21,
+"detalle": "VIT_ONOFF = Falso"
+},
+{
+"d": "2026-07-20",
+"tipo": "Vitrina sobre consigna",
+"equipo": "Vitrina 4",
+"inicio": "10:15",
+"fin": "10:52",
+"min": 38,
+"detalle": "T producto hasta 7.5 K por encima de la consigna (fuera de desescarche)"
+},
+{
+"d": "2026-07-20",
+"tipo": "Vitrina apagada",
+"equipo": "Vitrina 4",
+"inicio": "13:44",
+"fin": "14:04",
+"min": 21,
+"detalle": "VIT_ONOFF = Falso"
+},
+{
+"d": "2026-07-20",
+"tipo": "Vitrina apagada",
+"equipo": "Vitrina 5",
+"inicio": "13:44",
+"fin": "14:04",
+"min": 20,
+"detalle": "VIT_ONOFF = Falso"
+},
+{
+"d": "2026-07-20",
+"tipo": "Vitrina apagada",
+"equipo": "Vitrina 6",
+"inicio": "13:44",
+"fin": "14:04",
+"min": 20,
+"detalle": "VIT_ONOFF = Falso"
+},
+{
+"d": "2026-07-20",
+"tipo": "Hueco de datos",
+"equipo": "CLIMA",
+"inicio": "00:00",
+"fin": "10:15",
+"min": 615,
+"detalle": "Sin registros en CLIMA"
+},
+{
+"d": "2026-07-20",
+"tipo": "Hueco de datos",
+"equipo": "CONSUMO",
+"inicio": "00:00",
+"fin": "10:15",
+"min": 615,
+"detalle": "Sin registros en CONSUMO"
+},
+{
+"d": "2026-07-20",
+"tipo": "Hueco de datos",
+"equipo": "PRODUCCION",
+"inicio": "00:00",
+"fin": "10:15",
+"min": 615,
+"detalle": "Sin registros en PRODUCCION"
+},
+{
+"d": "2026-07-20",
+"tipo": "Hueco de datos",
+"equipo": "VALVULAS",
+"inicio": "00:00",
+"fin": "10:15",
+"min": 615,
+"detalle": "Sin registros en VALVULAS"
+},
+{
+"d": "2026-07-20",
+"tipo": "Hueco de datos",
+"equipo": "VITRINAS",
+"inicio": "00:00",
+"fin": "10:15",
+"min": 615,
+"detalle": "Sin registros en VITRINAS"
+}
+]

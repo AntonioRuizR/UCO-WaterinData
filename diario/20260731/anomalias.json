@@ -1,0 +1,101 @@
+[
+{
+"d": "2026-07-31",
+"tipo": "Vitrina apagada",
+"equipo": "Vitrina 1",
+"inicio": "13:48",
+"fin": "14:27",
+"min": 39,
+"detalle": "VIT_ONOFF = Falso"
+},
+{
+"d": "2026-07-31",
+"tipo": "Vitrina apagada",
+"equipo": "Vitrina 2",
+"inicio": "13:48",
+"fin": "14:27",
+"min": 39,
+"detalle": "VIT_ONOFF = Falso"
+},
+{
+"d": "2026-07-31",
+"tipo": "Vitrina apagada",
+"equipo": "Vitrina 3",
+"inicio": "13:49",
+"fin": "14:27",
+"min": 38,
+"detalle": "VIT_ONOFF = Falso"
+},
+{
+"d": "2026-07-31",
+"tipo": "Vitrina apagada",
+"equipo": "Vitrina 4",
+"inicio": "13:49",
+"fin": "14:27",
+"min": 38,
+"detalle": "VIT_ONOFF = Falso"
+},
+{
+"d": "2026-07-31",
+"tipo": "Vitrina apagada",
+"equipo": "Vitrina 5",
+"inicio": "13:49",
+"fin": "14:27",
+"min": 37,
+"detalle": "VIT_ONOFF = Falso"
+},
+{
+"d": "2026-07-31",
+"tipo": "Vitrina apagada",
+"equipo": "Vitrina 6",
+"inicio": "13:51",
+"fin": "14:27",
+"min": 36,
+"detalle": "VIT_ONOFF = Falso"
+},
+{
+"d": "2026-07-31",
+"tipo": "Hueco de datos",
+"equipo": "CLIMA",
+"inicio": "14:27",
+"fin": "23:59",
+"min": 573,
+"detalle": "Sin registros en CLIMA"
+},
+{
+"d": "2026-07-31",
+"tipo": "Hueco de datos",
+"equipo": "CONSUMO",
+"inicio": "14:27",
+"fin": "23:59",
+"min": 573,
+"detalle": "Sin registros en CONSUMO"
+},
+{
+"d": "2026-07-31",
+"tipo": "Hueco de datos",
+"equipo": "PRODUCCION",
+"inicio": "14:27",
+"fin": "23:59",
+"min": 573,
+"detalle": "Sin registros en PRODUCCION"
+},
+{
+"d": "2026-07-31",
+"tipo": "Hueco de datos",
+"equipo": "VALVULAS",
+"inicio": "14:27",
+"fin": "23:59",
+"min": 573,
+"detalle": "Sin registros en VALVULAS"
+},
+{
+"d": "2026-07-31",
+"tipo": "Hueco de datos",
+"equipo": "VITRINAS",
+"inicio": "14:27",
+"fin": "23:59",
+"min": 573,
+"detalle": "Sin registros en VITRINAS"
+}
+]

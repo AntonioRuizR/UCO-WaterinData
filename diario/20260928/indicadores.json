@@ -2,53 +2,53 @@
  "firma": {
   "CLIMA": [
    "20260928_CLIMA.csv",
-   1790578836.0,
-   462611
+   1790632800.0,
+   1234103
   ],
   "CONSUMO": [
    "20260928_CONSUMO.csv",
-   1790578836.0,
-   2703957
+   1790632800.0,
+   7205128
   ],
   "PRODUCCION": [
    "20260928_PRODUCCION.csv",
-   1790578836.0,
-   561758
+   1790632800.0,
+   1492655
   ],
   "VALVULAS": [
    "20260928_VALVULAS.csv",
-   1790578836.0,
-   2797425
+   1790632800.0,
+   7500968
   ],
   "VITRINAS": [
    "20260928_VITRINAS.csv",
-   1790578822.0,
-   1427232
+   1790632800.0,
+   3819025
   ]
  },
  "version": 1,
  "indicadores": {
-  "kWh Vitrina 1": 0.679,
-  "kWh Vitrina 2": 2.283,
-  "kWh Vitrina 3": 2.813,
-  "kWh Vitrina 4": 7.617,
-  "kWh Vitrina 5": 5.254,
-  "kWh Vitrina 6": 4.458,
-  "kWh Bomba de calor": 0.427,
-  "kWh Aeroenfriador": 0.251,
-  "kWh Bombas": 1.817,
-  "kWh Fan coil 1": 0.0,
-  "kWh Fan coil 2": 0.0,
-  "kWh Aerotermia": 0.133,
+  "kWh Vitrina 1": 2.704,
+  "kWh Vitrina 2": 5.62,
+  "kWh Vitrina 3": 8.866,
+  "kWh Vitrina 4": 22.618,
+  "kWh Vitrina 5": 14.74,
+  "kWh Vitrina 6": 11.853,
+  "kWh Bomba de calor": 6.135,
+  "kWh Aeroenfriador": 0.69,
+  "kWh Bombas": 5.081,
+  "kWh Fan coil 1": 0.053,
+  "kWh Fan coil 2": 0.081,
+  "kWh Aerotermia": 0.353,
   "kWh R. aerotermia": 0.0,
-  "kWh total": 25.732,
-  "Calor cedido por vitrinas al anillo (kWh térmicos, aprox.)": 36.633964191792735,
-  "Calor en aeroenfriador STA-2, Tret−Timp (kWh térmicos, aprox.)": -34.85372605063593,
-  "Frío entregado dep. 2 STA-11 (kWh térmicos, aprox.)": -0.002412817769104166,
-  "EER aprox. BdC + dep. 2 (día)": null,
-  "BdC en marcha EST=3 (h)": 0.0,
-  "Ventilador aero >0 (h)": 2.3741666666666665,
-  "T ext mín / media / máx (°C)": "24,1 / 25,7 / 27,7",
-  "Datos registrados, peor fichero (%)": 37.84722222222222
+  "kWh total": 78.794,
+  "Calor cedido por vitrinas al anillo (kWh térmicos, aprox.)": 102.76869721782809,
+  "Calor en aeroenfriador STA-2, Tret−Timp (kWh térmicos, aprox.)": -97.30186286937337,
+  "Frío entregado dep. 2 STA-11 (kWh térmicos, aprox.)": 11.248586461747484,
+  "EER aprox. BdC + dep. 2 (día)": 1.8335104257127137,
+  "BdC en marcha EST=3 (h)": 1.8888888888888888,
+  "Ventilador aero >0 (h)": 6.747222222222222,
+  "T ext mín / media / máx (°C)": "22,0 / 26,0 / 30,2",
+  "Datos registrados, peor fichero (%)": 100.0
  }
 }

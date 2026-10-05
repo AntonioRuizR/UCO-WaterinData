@@ -1,0 +1,173 @@
+[
+{
+"d": "2026-07-14",
+"tipo": "Vitrina sobre consigna",
+"equipo": "Vitrina 1",
+"inicio": "10:35",
+"fin": "11:18",
+"min": 43,
+"detalle": "T producto hasta 24.8 K por encima de la consigna (fuera de desescarche)"
+},
+{
+"d": "2026-07-14",
+"tipo": "Vitrina sobre consigna",
+"equipo": "Vitrina 2",
+"inicio": "10:34",
+"fin": "11:24",
+"min": 51,
+"detalle": "T producto hasta 24.5 K por encima de la consigna (fuera de desescarche)"
+},
+{
+"d": "2026-07-14",
+"tipo": "Vitrina sobre consigna",
+"equipo": "Vitrina 3",
+"inicio": "10:35",
+"fin": "11:24",
+"min": 50,
+"detalle": "T producto hasta 24.0 K por encima de la consigna (fuera de desescarche)"
+},
+{
+"d": "2026-07-14",
+"tipo": "Vitrina sobre consigna",
+"equipo": "Vitrina 3",
+"inicio": "11:27",
+"fin": "12:42",
+"min": 75,
+"detalle": "T producto hasta 7.7 K por encima de la consigna (fuera de desescarche)"
+},
+{
+"d": "2026-07-14",
+"tipo": "Vitrina sobre consigna",
+"equipo": "Vitrina 4",
+"inicio": "10:33",
+"fin": "11:24",
+"min": 52,
+"detalle": "T producto hasta 45.7 K por encima de la consigna (fuera de desescarche)"
+},
+{
+"d": "2026-07-14",
+"tipo": "Vitrina sobre consigna",
+"equipo": "Vitrina 4",
+"inicio": "11:27",
+"fin": "12:28",
+"min": 61,
+"detalle": "T producto hasta 12.1 K por encima de la consigna (fuera de desescarche)"
+},
+{
+"d": "2026-07-14",
+"tipo": "Vitrina sobre consigna",
+"equipo": "Vitrina 4",
+"inicio": "13:18",
+"fin": "13:51",
+"min": 33,
+"detalle": "T producto hasta 3.5 K por encima de la consigna (fuera de desescarche)"
+},
+{
+"d": "2026-07-14",
+"tipo": "Vitrina sobre consigna",
+"equipo": "Vitrina 4",
+"inicio": "13:55",
+"fin": "14:28",
+"min": 33,
+"detalle": "T producto hasta 3.3 K por encima de la consigna (fuera de desescarche)"
+},
+{
+"d": "2026-07-14",
+"tipo": "Vitrina sobre consigna",
+"equipo": "Vitrina 5",
+"inicio": "10:35",
+"fin": "11:24",
+"min": 49,
+"detalle": "T producto hasta 47.1 K por encima de la consigna (fuera de desescarche)"
+},
+{
+"d": "2026-07-14",
+"tipo": "Vitrina sobre consigna",
+"equipo": "Vitrina 6",
+"inicio": "10:36",
+"fin": "11:24",
+"min": 48,
+"detalle": "T producto hasta 44.6 K por encima de la consigna (fuera de desescarche)"
+},
+{
+"d": "2026-07-14",
+"tipo": "Vitrina sobre consigna",
+"equipo": "Vitrina 6",
+"inicio": "11:27",
+"fin": "12:11",
+"min": 44,
+"detalle": "T producto hasta 6.9 K por encima de la consigna (fuera de desescarche)"
+},
+{
+"d": "2026-07-14",
+"tipo": "Hueco de datos",
+"equipo": "CONSUMO",
+"inicio": "00:00",
+"fin": "10:32",
+"min": 633,
+"detalle": "Sin registros en CONSUMO"
+},
+{
+"d": "2026-07-14",
+"tipo": "Hueco de datos",
+"equipo": "PRODUCCION",
+"inicio": "00:00",
+"fin": "10:32",
+"min": 633,
+"detalle": "Sin registros en PRODUCCION"
+},
+{
+"d": "2026-07-14",
+"tipo": "Hueco de datos",
+"equipo": "VALVULAS",
+"inicio": "00:00",
+"fin": "10:32",
+"min": 633,
+"detalle": "Sin registros en VALVULAS"
+},
+{
+"d": "2026-07-14",
+"tipo": "Hueco de datos",
+"equipo": "VITRINAS",
+"inicio": "00:00",
+"fin": "10:32",
+"min": 633,
+"detalle": "Sin registros en VITRINAS"
+},
+{
+"d": "2026-07-14",
+"tipo": "Fichero ausente",
+"equipo": "CLIMA",
+"inicio": "00:00",
+"fin": "23:59",
+"min": 1440,
+"detalle": "No existe el fichero CLIMA de este día"
+},
+{
+"d": "2026-07-14",
+"tipo": "Presión baja",
+"equipo": "Anillo (entrada aero)",
+"inicio": "10:32",
+"fin": "11:24",
+"min": 52,
+"detalle": "Presión mínima 0.55 bar (< 1.0 bar)"
+},
+{
+"d": "2026-07-14",
+"tipo": "Presión baja",
+"equipo": "Anillo (entrada aero)",
+"inicio": "11:27",
+"fin": "12:37",
+"min": 70,
+"detalle": "Presión mínima 0.73 bar (< 1.0 bar)"
+},
+{
+"d": "2026-07-14",
+"tipo": "Presión baja",
+"equipo": "Anillo (entrada aero)",
+"inicio": "19:37",
+"fin": "23:59",
+"min": 262,
+"detalle": "Presión mínima 0.49 bar (< 1.0 bar)"
+}
+]

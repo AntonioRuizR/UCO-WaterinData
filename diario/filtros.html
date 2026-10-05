@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Aquaring · Filtros</title>
+<link rel="stylesheet" href="estilo.css">
+<script src="datos_horarios.js"></script>
+<script src="plotly.min.js"></script>
+<script>if (typeof Plotly === "undefined") { document.write('<script src="https://cdn.plot.ly/plotly-2.35.2.min.js"><\/script>'); }</script>
+<script src="aquaring.js"></script>
+</head><body><main>
+<nav class="top"><a href="../Informe_Aquaring.html">Informe general</a><a href="index.html">Días</a><a class="activo" href="filtros.html">Filtros</a><a href="sinoptico.html">Sinóptico</a><a href="tendencias.html">Tendencias</a><a href="comparador.html">Comparador</a><a href="anomalias.html">Anomalías</a></nav>
+<h1>Filtrar horas y días por condiciones de la instalación</h1>
+<p class="sub">Cada registro es una hora de un día (medias horarias). Deja un campo vacío para no filtrar por él.
+Recorrido del agua según la posición media de la válvula en la hora: ≥ <span id="ua"></span> % = todo, ≤ <span id="ub"></span> % = nada, intermedio = reparto.</p>
+
+<form id="f" class="panel" onsubmit="return false">
+<div class="grid-filtros">
+  <fieldset><legend>Periodo</legend>
+    <label>Desde <input type="date" id="dDesde"></label>
+    <label>Hasta <input type="date" id="dHasta"></label>
+    <label>Horas del día <span class="rango"><input type="number" id="hIni" min="0" max="23" placeholder="0"> a <input type="number" id="hFin" min="0" max="23" placeholder="23"></span></label>
+    <div class="dias-sem" id="dsem"></div>
+    <label>Datos mínimos en la hora (%) <input type="number" id="cobMin" value="90" min="0" max="100"></label>
+  </fieldset>
+  <fieldset><legend>Temperaturas (°C)</legend>
+    <label>Anillo (entrada vitrinas) <span class="rango"><input type="number" step="0.5" id="TanilloMin"> – <input type="number" step="0.5" id="TanilloMax"></span></label>
+    <label>Exterior (aero + BdC) <span class="rango"><input type="number" step="0.5" id="TextMin"> – <input type="number" step="0.5" id="TextMax"></span></label>
+    <label>Interior <span class="rango"><input type="number" step="0.5" id="TintMin"> – <input type="number" step="0.5" id="TintMax"></span></label>
+  </fieldset>
+  <fieldset><legend>Consignas (°C)</legend>
+    <label>Bomba de calor (activa) <span class="rango"><input type="number" step="0.5" id="SPbdcMin"> – <input type="number" step="0.5" id="SPbdcMax"></span></label>
+    <label>Aeroenfriador <span class="rango"><input type="number" step="0.5" id="SPaeroMin"> – <input type="number" step="0.5" id="SPaeroMax"></span></label>
+    <label>Vitrina <select id="vitSel"><option value="">—</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option></select></label>
+    <label>Consigna vitrina <span class="rango"><input type="number" step="0.5" id="SPvMin"> – <input type="number" step="0.5" id="SPvMax"></span></label>
+  </fieldset>
+  <fieldset><legend>Recorrido del agua</legend>
+    <label>Desvío a ACS (V-1) <select id="acs"><option value="">cualquiera</option><option value="si">sí</option><option value="no">no</option></select></label>
+    <label>Agua de vitrinas (V-3) <select id="mVit"><option value="">cualquiera</option><option value="aero">todo al aeroenfriador</option><option value="deposito">todo al depósito 1</option><option value="reparto">reparto</option></select></label>
+    <label>Agua de la BdC (V-12) <select id="mBdc"><option value="">cualquiera</option><option value="fancoils">todo a los fan coils</option><option value="deposito">todo al depósito 1</option><option value="reparto">reparto</option></select></label>
+  </fieldset>
+  <fieldset><legend>Estado de los equipos</legend>
+    <label>Bomba de calor en marcha <select id="bdcOn"><option value="">cualquiera</option><option value="si">sí</option><option value="no">no</option></select></label>
+    <label>Ventilador aeroenfriador &gt; 0 % <select id="ventOn"><option value="">cualquiera</option><option value="si">sí</option><option value="no">no</option></select></label>
+    <label>Algún desescarche en la hora <select id="defrost"><option value="">cualquiera</option><option value="si">sí</option><option value="no">no</option></select></label>
+    <label>Consumo total (kWh/h) <span class="rango"><input type="number" step="0.5" id="kWhMin"> – <input type="number" step="0.5" id="kWhMax"></span></label>
+  </fieldset>
+</div>
+<p><button class="prim" id="aplicar">Aplicar</button> <button id="limpiar" type="button">Limpiar</button>
+ <button id="csv" type="button">Exportar CSV de las horas filtradas</button></p>
+</form>
+
+<div class="kpis" id="kpis"></div>
+<h2>Consumo horario frente a temperatura exterior (horas filtradas)</h2>
+<div id="graf" class="fig panel"></div>
+<h2>Días con horas que cumplen el filtro</h2>
+<div class="tabla"><table id="tabla"></table></div>
+<p class="nota">EER aproximado = frío entregado por el depósito 2 (STA-11) / electricidad de la BdC, sólo en horas con la BdC trabajando.
+Potencias térmicas con ρ·cp del agua (glicol en % desconocido).</p>
+</main>
+<script>
+const $ = id => document.getElementById(id);
+$("ua").textContent = AQ.CFG.umbral_alto; $("ub").textContent = AQ.CFG.umbral_bajo;
+AQ.DIAS_SEM.forEach((d, i) => { $("dsem").insertAdjacentHTML("beforeend", `<label><input type="checkbox" data-dow="${i}" checked>${d}</label>`); });
+const dias = AQ.dias();
+if (dias.length) { $("dDesde").value = dias[0]; $("dHasta").value = dias[dias.length - 1]; }
+
+const num = id => { const v = $(id).value; return v === "" ? null : Number(v); };
+function enRango(v, a, b) { if (a == null && b == null) return true; if (v == null) return false; return (a == null || v >= a) && (b == null || v <= b); }
+function siNo(v, sel) { if (!sel) return true; if (v == null) return false; return sel === "si" ? v : !v; }
+
+let resultado = [];
+function filtrar() {
+  const desde = $("dDesde").value, hasta = $("dHasta").value;
+  const hI = num("hIni"), hF = num("hFin"), cob = num("cobMin");
+  const dows = [...document.querySelectorAll("#dsem input")].filter(x => x.checked).map(x => +x.dataset.dow);
+  const vit = $("vitSel").value;
+  return AQ.filas.filter(r =>
+    (!desde || r.d >= desde) && (!hasta || r.d <= hasta) &&
+    (hI == null || r.h >= hI) && (hF == null || r.h <= hF) && dows.includes(r.dow) &&
+    (cob == null || (r.cob != null && r.cob >= cob)) &&
+    enRango(r.Tanillo, num("TanilloMin"), num("TanilloMax")) && enRango(r.Text, num("TextMin"), num("TextMax")) &&
+    enRango(r.Tint, num("TintMin"), num("TintMax")) &&
+    enRango(r.SPbdc, num("SPbdcMin"), num("SPbdcMax")) && enRango(r.SPaero, num("SPaeroMin"), num("SPaeroMax")) &&
+    (!vit || enRango(r["SPv" + vit], num("SPvMin"), num("SPvMax"))) &&
+    siNo(r.acs, $("acs").value) && (!$("mVit").value || r.mVit === $("mVit").value) &&
+    (!$("mBdc").value || r.mBdc === $("mBdc").value) &&
+    siNo(r.bdcOn, $("bdcOn").value) && siNo(r.ventOn, $("ventOn").value) && siNo(r.defrost, $("defrost").value) &&
+    enRango(r.kWh, num("kWhMin"), num("kWhMax")));
+}
+
+function pintar() {
+  resultado = filtrar();
+  const R = resultado, f = AQ.fmt;
+  const nd = new Set(R.map(r => r.d)).size;
+  const kpis = [
+    [R.length, "horas que cumplen el filtro"], [nd, "días distintos"],
+    [f(AQ.media(R.map(r => r.kWh)), 2), "kWh/h medio (total)"],
+    [f(AQ.media(R.map(r => r.kWh_bdc)), 2), "kWh/h medio BdC"],
+    [f(AQ.media(R.map(r => r.kWh_aero)), 2), "kWh/h medio aeroenfriador"],
+    [f(AQ.media(R.map(r => r.kWh_vit)), 2), "kWh/h medio vitrinas"],
+    [f(AQ.eer(R), 2), "EER aprox. BdC + dep. 2"],
+    [f(AQ.media(R.map(r => r.Q_vit)), 2), "kW térm. cedidos por vitrinas (aprox.)"],
+    [f(AQ.media(R.map(r => r.Text)), 1), "T exterior media (°C)"],
+    [f(AQ.media(R.map(r => r.Tanillo)), 1), "T anillo media (°C)"]];
+  $("kpis").innerHTML = kpis.map(k => `<div class="kpi"><b>${k[0]}</b><span>${k[1]}</span></div>`).join("");
+
+  const porDia = AQ.porDia(R);
+  let t = "<tr><th class='izq'>Día</th><th class='izq'>Tramos que cumplen</th><th>Horas</th><th>kWh</th><th>kWh/h</th><th>T ext media</th><th>T anillo media</th><th>EER</th><th class='izq'></th></tr>";
+  porDia.forEach(d => {
+    const tr = AQ.tramos(d.h.map(r => r.h)).map(x => `<span class="chip">${x[0]}–${x[1]} h</span>`).join("");
+    const clave = d.d.replace(/-/g, "");
+    t += `<tr><td class='izq'>${AQ.diaSem(d.d)} ${AQ.fechaTxt(d.d)}</td><td class='izq'>${tr}</td><td>${d.horas}</td>` +
+      `<td>${f(d.kWh, 1)}</td><td>${f(d.kWh / d.horas, 2)}</td><td>${f(d.Text, 1)}</td><td>${f(d.Tanillo, 1)}</td><td>${f(d.eer, 2)}</td>` +
+      `<td class='izq'><a href="${clave}/interactivo.html">interactivo</a> · <a href="${clave}/informe.html">imágenes</a> · <a href="sinoptico.html#${clave}">sinóptico</a></td></tr>`;
+  });
+  $("tabla").innerHTML = porDia.length ? t : "<tr><td class='izq'>Ninguna hora cumple el filtro.</td></tr>";
+
+  const g = $("graf");
+  if (!AQ.hayPlotly()) { AQ.avisoPlotly(g); return; }
+  const modos = [["aero", "Vitrinas → aero"], ["deposito", "Vitrinas → depósito 1"], ["reparto", "Reparto (V-3)"], [null, "Sin dato de V-3"]];
+  const data = modos.map((m, i) => {
+    const s = R.filter(r => r.mVit === m[0] && r.Text != null && r.kWh != null);
+    return { type: "scattergl", mode: "markers", name: m[1], x: s.map(r => r.Text), y: s.map(r => r.kWh),
+      text: s.map(r => `${AQ.fechaTxt(r.d)} ${r.h}:00`), marker: { color: AQ.COLORES[i], size: 6, opacity: 0.75 },
+      hovertemplate: "%{text}<br>T ext %{x:.1f} °C<br>%{y:.2f} kWh/h<extra>%{fullData.name}</extra>" };
+  });
+  Plotly.react(g, data, Object.assign({}, AQ.LAYOUT_BASE, { height: 420,
+    xaxis: { title: { text: "T exterior (°C)" }, gridcolor: "#e3e2de" },
+    yaxis: { title: { text: "Consumo total (kWh en la hora)" }, gridcolor: "#e3e2de", rangemode: "tozero" } }), AQ.PCONFIG);
+}
+$("aplicar").onclick = pintar;
+$("f").addEventListener("change", pintar);
+$("limpiar").onclick = () => { $("f").reset(); if (dias.length) { $("dDesde").value = dias[0]; $("dHasta").value = dias[dias.length - 1]; } pintar(); };
+$("csv").onclick = () => AQ.descargarCSV("aquaring_horas_filtradas.csv", AQ.cols.concat(["mVit", "mBdc", "acs"]), resultado);
+pintar();
+</script>
+</body></html>

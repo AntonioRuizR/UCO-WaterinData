@@ -1,0 +1,20 @@
+[
+{
+"d": "2026-07-16",
+"tipo": "Presión baja",
+"equipo": "Anillo (entrada aero)",
+"inicio": "00:00",
+"fin": "11:58",
+"min": 719,
+"detalle": "Presión mínima 0.29 bar (< 1.0 bar)"
+},
+{
+"d": "2026-07-16",
+"tipo": "Presión baja",
+"equipo": "Anillo (entrada aero)",
+"inicio": "21:01",
+"fin": "23:59",
+"min": 179,
+"detalle": "Presión mínima 0.59 bar (< 1.0 bar)"
+}
+]

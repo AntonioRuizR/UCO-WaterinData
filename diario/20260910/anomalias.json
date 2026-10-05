@@ -1,0 +1,83 @@
+[
+{
+"d": "2026-09-10",
+"tipo": "Vitrina sobre consigna",
+"equipo": "Vitrina 1",
+"inicio": "01:00",
+"fin": "03:37",
+"min": 157,
+"detalle": "T producto hasta 3.5 K por encima de la consigna (fuera de desescarche)"
+},
+{
+"d": "2026-09-10",
+"tipo": "Vitrina sobre consigna",
+"equipo": "Vitrina 4",
+"inicio": "00:03",
+"fin": "00:42",
+"min": 39,
+"detalle": "T producto hasta 3.5 K por encima de la consigna (fuera de desescarche)"
+},
+{
+"d": "2026-09-10",
+"tipo": "Vitrina sobre consigna",
+"equipo": "Vitrina 4",
+"inicio": "00:45",
+"fin": "01:25",
+"min": 39,
+"detalle": "T producto hasta 3.4 K por encima de la consigna (fuera de desescarche)"
+},
+{
+"d": "2026-09-10",
+"tipo": "Vitrina sobre consigna",
+"equipo": "Vitrina 4",
+"inicio": "01:28",
+"fin": "02:04",
+"min": 36,
+"detalle": "T producto hasta 3.4 K por encima de la consigna (fuera de desescarche)"
+},
+{
+"d": "2026-09-10",
+"tipo": "Vitrina sobre consigna",
+"equipo": "Vitrina 4",
+"inicio": "02:07",
+"fin": "02:47",
+"min": 40,
+"detalle": "T producto hasta 3.3 K por encima de la consigna (fuera de desescarche)"
+},
+{
+"d": "2026-09-10",
+"tipo": "Vitrina sobre consigna",
+"equipo": "Vitrina 4",
+"inicio": "02:57",
+"fin": "03:42",
+"min": 45,
+"detalle": "T producto hasta 3.3 K por encima de la consigna (fuera de desescarche)"
+},
+{
+"d": "2026-09-10",
+"tipo": "Vitrina sobre consigna",
+"equipo": "Vitrina 5",
+"inicio": "00:03",
+"fin": "00:39",
+"min": 36,
+"detalle": "T producto hasta 3.2 K por encima de la consigna (fuera de desescarche)"
+},
+{
+"d": "2026-09-10",
+"tipo": "Presión baja",
+"equipo": "Anillo (entrada BdC)",
+"inicio": "14:10",
+"fin": "23:59",
+"min": 590,
+"detalle": "Presión mínima 0.89 bar (< 1.0 bar)"
+},
+{
+"d": "2026-09-10",
+"tipo": "Presión baja",
+"equipo": "Anillo (entrada aero)",
+"inicio": "14:10",
+"fin": "23:59",
+"min": 590,
+"detalle": "Presión mínima 0.93 bar (< 1.0 bar)"
+}
+]

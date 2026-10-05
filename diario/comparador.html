@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Aquaring · Comparador de días</title>
+<link rel="stylesheet" href="estilo.css">
+<script src="datos_horarios.js"></script>
+<script src="plotly.min.js"></script>
+<script>if (typeof Plotly === "undefined") { document.write('<script src="https://cdn.plot.ly/plotly-2.35.2.min.js"><\/script>'); }</script>
+<script src="aquaring.js"></script>
+</head><body><main>
+<nav class="top"><a href="../Informe_Aquaring.html">Informe general</a><a href="index.html">Días</a><a href="filtros.html">Filtros</a><a href="sinoptico.html">Sinóptico</a><a href="tendencias.html">Tendencias</a><a class="activo" href="comparador.html">Comparador</a><a href="anomalias.html">Anomalías</a></nav>
+<h1>Comparador de días</h1>
+<p class="sub">Superpone la misma variable de varios días sobre el eje horario (medias de 5 min). Elige la variable y marca los días.</p>
+<div class="panel">
+  <div class="sin-ctrl">
+    <label>Variable <select id="var1"></select></label>
+    <label>2.ª variable (opcional, panel inferior) <select id="var2"><option value="">—</option></select></label>
+    <label><input type="checkbox" id="media"> añadir la media de los días elegidos</label>
+  </div>
+  <div class="sin-ctrl">
+    <button id="ult7">Últimos 7 días</button><button id="ninguno">Ninguno</button>
+  </div>
+  <div id="lista" class="dias-sem" style="max-height:170px;overflow:auto"></div>
+</div>
+<div id="g1" class="fig panel"></div>
+<div id="g2" class="fig panel" style="display:none"></div>
+<p class="nota">Máximo recomendado: 8 días a la vez (a partir de ahí los colores se repiten). Los días sin la variable registrada no aparecen.</p>
+</main>
+<script>
+const $ = id => document.getElementById(id);
+const VARS = window.AQ_VARIABLES || [];
+VARS.forEach(v => { const o = `<option value="${v.id}">${v.nombre} [${v.unidad}]</option>`; $("var1").insertAdjacentHTML("beforeend", o); $("var2").insertAdjacentHTML("beforeend", o); });
+$("var1").value = "Text";
+const dias = AQ.dias();
+dias.forEach(d => $("lista").insertAdjacentHTML("beforeend",
+  `<label><input type="checkbox" value="${d.replace(/-/g, "")}">${AQ.diaSem(d)} ${AQ.fechaTxt(d)}</label>`));
+const cajas = () => [...document.querySelectorAll("#lista input")];
+const elegidos = () => cajas().filter(c => c.checked).map(c => c.value);
+window.AQ_SERIES = window.AQ_SERIES || {};
+
+function cargar(clave) {          // carga AAAAMMDD/series.js (funciona también abriendo los ficheros desde el disco)
+  return new Promise(res => {
+    if (window.AQ_SERIES[clave]) return res();
+    const s = document.createElement("script");
+    s.src = clave + "/series.js"; s.onload = () => res(); s.onerror = () => { window.AQ_SERIES[clave] = {}; res(); };
+    document.head.appendChild(s);
+  });
+}
+const X = Array.from({ length: 288 }, (_, i) => i / 12);
+const hh = x => { const h = Math.floor(x), m = Math.round((x - h) * 60); return `${h}:${String(m).padStart(2, "0")}`; };
+
+function dibujar(div, vid, claves) {
+  const v = VARS.find(z => z.id === vid);
+  if (!AQ.hayPlotly()) { AQ.avisoPlotly(div); return; }
+  const data = [], ys = [];
+  claves.forEach((c, i) => {
+    const y = (window.AQ_SERIES[c] || {})[vid];
+    if (!y) return;
+    ys.push(y);
+    const d = c.slice(0, 4) + "-" + c.slice(4, 6) + "-" + c.slice(6);
+    data.push({ type: "scatter", mode: "lines", name: `${AQ.diaSem(d)} ${AQ.fechaTxt(d)}`, x: X, y, connectgaps: false,
+      line: { color: AQ.COLORES[i % AQ.COLORES.length], width: 1.6 }, hovertemplate: "%{y:.2f}" });
+  });
+  if ($("media").checked && ys.length > 1) {
+    const m = X.map((_, j) => AQ.media(ys.map(y => y[j])));
+    data.push({ type: "scatter", mode: "lines", name: "Media", x: X, y: m, line: { color: "#0b0b0b", width: 3, dash: "dash" }, hovertemplate: "%{y:.2f}" });
+  }
+  Plotly.react(div, data, Object.assign({}, AQ.LAYOUT_BASE, {
+    height: 460, hovermode: "x unified", title: { text: v ? `${v.nombre} [${v.unidad}]` : vid, x: 0.01, font: { size: 15 } },
+    margin: { l: 60, r: 20, t: 80, b: 50 },
+    xaxis: { title: { text: "hora del día" }, range: [0, 24], dtick: 2, gridcolor: "#e3e2de",
+      tickvals: Array.from({ length: 13 }, (_, i) => i * 2), ticktext: Array.from({ length: 13 }, (_, i) => `${i * 2}:00`),
+      hoverformat: ".2f", spikemode: "across", showspikes: true },
+    yaxis: { title: { text: v ? v.unidad : "" }, gridcolor: "#e3e2de" } }), AQ.PCONFIG);
+}
+async function pintar() {
+  const claves = elegidos();
+  await Promise.all(claves.map(cargar));
+  dibujar($("g1"), $("var1").value, claves);
+  if ($("var2").value) { $("g2").style.display = ""; dibujar($("g2"), $("var2").value, claves); } else $("g2").style.display = "none";
+}
+$("ult7").onclick = () => { cajas().forEach((c, i, a) => { c.checked = i >= a.length - 7; }); pintar(); };
+$("ninguno").onclick = () => { cajas().forEach(c => { c.checked = false; }); pintar(); };
+["var1", "var2", "media"].forEach(id => $(id).addEventListener("change", pintar));
+$("lista").addEventListener("change", pintar);
+$("ult7").click();
+</script>
+</body></html>

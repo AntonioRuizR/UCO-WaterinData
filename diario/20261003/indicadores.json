@@ -1,0 +1,54 @@
+{
+ "firma": {
+  "CLIMA": [
+   "20261003_CLIMA.csv",
+   1791064796.0,
+   1232185
+  ],
+  "CONSUMO": [
+   "20261003_CONSUMO.csv",
+   1791064796.0,
+   7270390
+  ],
+  "PRODUCCION": [
+   "20261003_PRODUCCION.csv",
+   1791064796.0,
+   1500408
+  ],
+  "VALVULAS": [
+   "20261003_VALVULAS.csv",
+   1791064796.0,
+   7546043
+  ],
+  "VITRINAS": [
+   "20261003_VITRINAS.csv",
+   1791064796.0,
+   3753812
+  ]
+ },
+ "version": 1,
+ "indicadores": {
+  "kWh Vitrina 1": 2.99,
+  "kWh Vitrina 2": 6.178,
+  "kWh Vitrina 3": 8.717,
+  "kWh Vitrina 4": 21.075,
+  "kWh Vitrina 5": 14.606,
+  "kWh Vitrina 6": 12.182,
+  "kWh Bomba de calor": 1.164,
+  "kWh Aeroenfriador": 0.796,
+  "kWh Bombas": 4.72,
+  "kWh Fan coil 1": 0.0,
+  "kWh Fan coil 2": 0.0,
+  "kWh Aerotermia": 0.358,
+  "kWh R. aerotermia": 0.0,
+  "kWh total": 72.786,
+  "Calor cedido por vitrinas al anillo (kWh térmicos, aprox.)": 101.14391053641526,
+  "Calor en aeroenfriador STA-2, Tret−Timp (kWh térmicos, aprox.)": -96.13712337988811,
+  "Frío entregado dep. 2 STA-11 (kWh térmicos, aprox.)": 0.3605549249430776,
+  "EER aprox. BdC + dep. 2 (día)": null,
+  "BdC en marcha EST=3 (h)": 0.0,
+  "Ventilador aero >0 (h)": 8.015555555555556,
+  "T ext mín / media / máx (°C)": "21,0 / 26,1 / 31,9",
+  "Datos registrados, peor fichero (%)": 100.0
+ }
+}

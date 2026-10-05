@@ -1,0 +1,29 @@
+[
+{
+"d": "2026-09-25",
+"tipo": "Vitrina sobre consigna",
+"equipo": "Vitrina 1",
+"inicio": "02:07",
+"fin": "03:25",
+"min": 78,
+"detalle": "T producto hasta 3.1 K por encima de la consigna (fuera de desescarche)"
+},
+{
+"d": "2026-09-25",
+"tipo": "Ventilador incoherente",
+"equipo": "Aeroenfriador",
+"inicio": "13:27",
+"fin": "13:51",
+"min": 24,
+"detalle": "Ventilador > 0 % con potencia < 0.1 kW"
+},
+{
+"d": "2026-09-25",
+"tipo": "Ventilador incoherente",
+"equipo": "Aeroenfriador",
+"inicio": "20:02",
+"fin": "20:24",
+"min": 22,
+"detalle": "Ventilador > 0 % con potencia < 0.1 kW"
+}
+]

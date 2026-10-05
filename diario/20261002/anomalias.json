@@ -1,0 +1,155 @@
+[
+{
+"d": "2026-10-02",
+"tipo": "Vitrina sobre consigna",
+"equipo": "Vitrina 1",
+"inicio": "00:00",
+"fin": "02:31",
+"min": 152,
+"detalle": "T producto hasta 4.1 K por encima de la consigna (fuera de desescarche)"
+},
+{
+"d": "2026-10-02",
+"tipo": "Vitrina sobre consigna",
+"equipo": "Vitrina 5",
+"inicio": "22:52",
+"fin": "23:33",
+"min": 41,
+"detalle": "T producto hasta 3.1 K por encima de la consigna (fuera de desescarche)"
+},
+{
+"d": "2026-10-02",
+"tipo": "Hueco de datos",
+"equipo": "CLIMA",
+"inicio": "10:44",
+"fin": "11:40",
+"min": 55,
+"detalle": "Sin registros en CLIMA"
+},
+{
+"d": "2026-10-02",
+"tipo": "Hueco de datos",
+"equipo": "CONSUMO",
+"inicio": "10:44",
+"fin": "11:40",
+"min": 55,
+"detalle": "Sin registros en CONSUMO"
+},
+{
+"d": "2026-10-02",
+"tipo": "Hueco de datos",
+"equipo": "PRODUCCION",
+"inicio": "10:44",
+"fin": "11:40",
+"min": 55,
+"detalle": "Sin registros en PRODUCCION"
+},
+{
+"d": "2026-10-02",
+"tipo": "Hueco de datos",
+"equipo": "VALVULAS",
+"inicio": "10:44",
+"fin": "11:40",
+"min": 55,
+"detalle": "Sin registros en VALVULAS"
+},
+{
+"d": "2026-10-02",
+"tipo": "Hueco de datos",
+"equipo": "VITRINAS",
+"inicio": "10:44",
+"fin": "11:40",
+"min": 55,
+"detalle": "Sin registros en VITRINAS"
+},
+{
+"d": "2026-10-02",
+"tipo": "Presión baja",
+"equipo": "Anillo (entrada BdC)",
+"inicio": "00:00",
+"fin": "10:44",
+"min": 645,
+"detalle": "Presión mínima 0.71 bar (< 1.0 bar)"
+},
+{
+"d": "2026-10-02",
+"tipo": "Presión baja",
+"equipo": "Anillo (entrada BdC)",
+"inicio": "11:40",
+"fin": "11:48",
+"min": 9,
+"detalle": "Presión mínima 0.82 bar (< 1.0 bar)"
+},
+{
+"d": "2026-10-02",
+"tipo": "Presión baja",
+"equipo": "Anillo (entrada BdC)",
+"inicio": "13:43",
+"fin": "23:59",
+"min": 616,
+"detalle": "Presión mínima 0.67 bar (< 1.0 bar)"
+},
+{
+"d": "2026-10-02",
+"tipo": "Presión baja",
+"equipo": "Anillo (entrada aero)",
+"inicio": "00:00",
+"fin": "10:44",
+"min": 645,
+"detalle": "Presión mínima 0.63 bar (< 1.0 bar)"
+},
+{
+"d": "2026-10-02",
+"tipo": "Presión baja",
+"equipo": "Anillo (entrada aero)",
+"inicio": "11:40",
+"fin": "11:48",
+"min": 9,
+"detalle": "Presión mínima 0.82 bar (< 1.0 bar)"
+},
+{
+"d": "2026-10-02",
+"tipo": "Presión baja",
+"equipo": "Anillo (entrada aero)",
+"inicio": "13:43",
+"fin": "23:59",
+"min": 616,
+"detalle": "Presión mínima 0.65 bar (< 1.0 bar)"
+},
+{
+"d": "2026-10-02",
+"tipo": "Ventilador incoherente",
+"equipo": "Aeroenfriador",
+"inicio": "16:13",
+"fin": "16:45",
+"min": 32,
+"detalle": "Ventilador > 0 % con potencia < 0.1 kW"
+},
+{
+"d": "2026-10-02",
+"tipo": "Ventilador incoherente",
+"equipo": "Aeroenfriador",
+"inicio": "16:47",
+"fin": "17:07",
+"min": 20,
+"detalle": "Ventilador > 0 % con potencia < 0.1 kW"
+},
+{
+"d": "2026-10-02",
+"tipo": "Ventilador incoherente",
+"equipo": "Aeroenfriador",
+"inicio": "18:14",
+"fin": "19:04",
+"min": 50,
+"detalle": "Ventilador > 0 % con potencia < 0.1 kW"
+},
+{
+"d": "2026-10-02",
+"tipo": "Ventilador incoherente",
+"equipo": "Aeroenfriador",
+"inicio": "19:04",
+"fin": "19:28",
+"min": 24,
+"detalle": "Ventilador > 0 % con potencia < 0.1 kW"
+}
+]

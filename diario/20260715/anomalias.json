@@ -1,0 +1,29 @@
+[
+{
+"d": "2026-07-15",
+"tipo": "Hueco de datos",
+"equipo": "CLIMA",
+"inicio": "00:00",
+"fin": "09:26",
+"min": 566,
+"detalle": "Sin registros en CLIMA"
+},
+{
+"d": "2026-07-15",
+"tipo": "Presión baja",
+"equipo": "Anillo (entrada aero)",
+"inicio": "00:00",
+"fin": "12:27",
+"min": 748,
+"detalle": "Presión mínima 0.24 bar (< 1.0 bar)"
+},
+{
+"d": "2026-07-15",
+"tipo": "Presión baja",
+"equipo": "Anillo (entrada aero)",
+"inicio": "21:32",
+"fin": "23:59",
+"min": 147,
+"detalle": "Presión mínima 0.55 bar (< 1.0 bar)"
+}
+]

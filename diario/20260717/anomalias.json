@@ -1,0 +1,191 @@
+[
+{
+"d": "2026-07-17",
+"tipo": "Vitrina apagada",
+"equipo": "Vitrina 1",
+"inicio": "14:08",
+"fin": "14:42",
+"min": 35,
+"detalle": "VIT_ONOFF = Falso"
+},
+{
+"d": "2026-07-17",
+"tipo": "Vitrina apagada",
+"equipo": "Vitrina 2",
+"inicio": "14:10",
+"fin": "14:42",
+"min": 32,
+"detalle": "VIT_ONOFF = Falso"
+},
+{
+"d": "2026-07-17",
+"tipo": "Vitrina apagada",
+"equipo": "Vitrina 3",
+"inicio": "14:07",
+"fin": "14:42",
+"min": 36,
+"detalle": "VIT_ONOFF = Falso"
+},
+{
+"d": "2026-07-17",
+"tipo": "Vitrina apagada",
+"equipo": "Vitrina 4",
+"inicio": "12:38",
+"fin": "12:59",
+"min": 21,
+"detalle": "VIT_ONOFF = Falso"
+},
+{
+"d": "2026-07-17",
+"tipo": "Vitrina apagada",
+"equipo": "Vitrina 4",
+"inicio": "14:09",
+"fin": "14:42",
+"min": 33,
+"detalle": "VIT_ONOFF = Falso"
+},
+{
+"d": "2026-07-17",
+"tipo": "Vitrina apagada",
+"equipo": "Vitrina 5",
+"inicio": "12:36",
+"fin": "12:57",
+"min": 21,
+"detalle": "VIT_ONOFF = Falso"
+},
+{
+"d": "2026-07-17",
+"tipo": "Vitrina apagada",
+"equipo": "Vitrina 5",
+"inicio": "14:07",
+"fin": "14:42",
+"min": 35,
+"detalle": "VIT_ONOFF = Falso"
+},
+{
+"d": "2026-07-17",
+"tipo": "Vitrina apagada",
+"equipo": "Vitrina 6",
+"inicio": "12:37",
+"fin": "12:58",
+"min": 21,
+"detalle": "VIT_ONOFF = Falso"
+},
+{
+"d": "2026-07-17",
+"tipo": "Vitrina apagada",
+"equipo": "Vitrina 6",
+"inicio": "14:08",
+"fin": "14:42",
+"min": 34,
+"detalle": "VIT_ONOFF = Falso"
+},
+{
+"d": "2026-07-17",
+"tipo": "Hueco de datos",
+"equipo": "CLIMA",
+"inicio": "11:28",
+"fin": "11:40",
+"min": 12,
+"detalle": "Sin registros en CLIMA"
+},
+{
+"d": "2026-07-17",
+"tipo": "Hueco de datos",
+"equipo": "CLIMA",
+"inicio": "14:42",
+"fin": "23:59",
+"min": 557,
+"detalle": "Sin registros en CLIMA"
+},
+{
+"d": "2026-07-17",
+"tipo": "Hueco de datos",
+"equipo": "CONSUMO",
+"inicio": "11:28",
+"fin": "11:40",
+"min": 12,
+"detalle": "Sin registros en CONSUMO"
+},
+{
+"d": "2026-07-17",
+"tipo": "Hueco de datos",
+"equipo": "CONSUMO",
+"inicio": "14:42",
+"fin": "23:59",
+"min": 557,
+"detalle": "Sin registros en CONSUMO"
+},
+{
+"d": "2026-07-17",
+"tipo": "Hueco de datos",
+"equipo": "PRODUCCION",
+"inicio": "11:28",
+"fin": "11:40",
+"min": 12,
+"detalle": "Sin registros en PRODUCCION"
+},
+{
+"d": "2026-07-17",
+"tipo": "Hueco de datos",
+"equipo": "PRODUCCION",
+"inicio": "14:42",
+"fin": "23:59",
+"min": 557,
+"detalle": "Sin registros en PRODUCCION"
+},
+{
+"d": "2026-07-17",
+"tipo": "Hueco de datos",
+"equipo": "VALVULAS",
+"inicio": "11:28",
+"fin": "11:40",
+"min": 12,
+"detalle": "Sin registros en VALVULAS"
+},
+{
+"d": "2026-07-17",
+"tipo": "Hueco de datos",
+"equipo": "VALVULAS",
+"inicio": "14:42",
+"fin": "23:59",
+"min": 557,
+"detalle": "Sin registros en VALVULAS"
+},
+{
+"d": "2026-07-17",
+"tipo": "Hueco de datos",
+"equipo": "VITRINAS",
+"inicio": "11:28",
+"fin": "11:40",
+"min": 12,
+"detalle": "Sin registros en VITRINAS"
+},
+{
+"d": "2026-07-17",
+"tipo": "Hueco de datos",
+"equipo": "VITRINAS",
+"inicio": "14:42",
+"fin": "23:59",
+"min": 557,
+"detalle": "Sin registros en VITRINAS"
+},
+{
+"d": "2026-07-17",
+"tipo": "Presión baja",
+"equipo": "Anillo (entrada aero)",
+"inicio": "00:00",
+"fin": "11:28",
+"min": 688,
+"detalle": "Presión mínima 0.23 bar (< 1.0 bar)"
+},
+{
+"d": "2026-07-17",
+"tipo": "Presión baja",
+"equipo": "Anillo (entrada aero)",
+"inicio": "11:40",
+"fin": "12:06",
+"min": 26,
+"detalle": "Presión mínima 0.89 bar (< 1.0 bar)"
+}
+]

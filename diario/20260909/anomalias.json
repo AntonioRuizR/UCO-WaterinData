@@ -1,0 +1,182 @@
+[
+{
+"d": "2026-09-09",
+"tipo": "Vitrina sobre consigna",
+"equipo": "Vitrina 1",
+"inicio": "09:43",
+"fin": "10:49",
+"min": 66,
+"detalle": "T producto hasta 27.4 K por encima de la consigna (fuera de desescarche)"
+},
+{
+"d": "2026-09-09",
+"tipo": "Vitrina apagada",
+"equipo": "Vitrina 1",
+"inicio": "09:13",
+"fin": "09:43",
+"min": 30,
+"detalle": "VIT_ONOFF = Falso"
+},
+{
+"d": "2026-09-09",
+"tipo": "Vitrina sobre consigna",
+"equipo": "Vitrina 2",
+"inicio": "09:47",
+"fin": "11:25",
+"min": 99,
+"detalle": "T producto hasta 27.6 K por encima de la consigna (fuera de desescarche)"
+},
+{
+"d": "2026-09-09",
+"tipo": "Vitrina apagada",
+"equipo": "Vitrina 2",
+"inicio": "09:13",
+"fin": "09:47",
+"min": 33,
+"detalle": "VIT_ONOFF = Falso"
+},
+{
+"d": "2026-09-09",
+"tipo": "Vitrina sobre consigna",
+"equipo": "Vitrina 3",
+"inicio": "09:48",
+"fin": "14:41",
+"min": 294,
+"detalle": "T producto hasta 27.3 K por encima de la consigna (fuera de desescarche)"
+},
+{
+"d": "2026-09-09",
+"tipo": "Vitrina apagada",
+"equipo": "Vitrina 3",
+"inicio": "09:13",
+"fin": "09:47",
+"min": 34,
+"detalle": "VIT_ONOFF = Falso"
+},
+{
+"d": "2026-09-09",
+"tipo": "Vitrina sobre consigna",
+"equipo": "Vitrina 4",
+"inicio": "09:48",
+"fin": "12:45",
+"min": 177,
+"detalle": "T producto hasta 47.2 K por encima de la consigna (fuera de desescarche)"
+},
+{
+"d": "2026-09-09",
+"tipo": "Vitrina sobre consigna",
+"equipo": "Vitrina 4",
+"inicio": "22:40",
+"fin": "23:20",
+"min": 40,
+"detalle": "T producto hasta 3.5 K por encima de la consigna (fuera de desescarche)"
+},
+{
+"d": "2026-09-09",
+"tipo": "Vitrina sobre consigna",
+"equipo": "Vitrina 4",
+"inicio": "23:23",
+"fin": "23:59",
+"min": 36,
+"detalle": "T producto hasta 3.5 K por encima de la consigna (fuera de desescarche)"
+},
+{
+"d": "2026-09-09",
+"tipo": "Vitrina apagada",
+"equipo": "Vitrina 4",
+"inicio": "09:13",
+"fin": "09:48",
+"min": 35,
+"detalle": "VIT_ONOFF = Falso"
+},
+{
+"d": "2026-09-09",
+"tipo": "Vitrina sobre consigna",
+"equipo": "Vitrina 5",
+"inicio": "09:52",
+"fin": "10:54",
+"min": 63,
+"detalle": "T producto hasta 46.6 K por encima de la consigna (fuera de desescarche)"
+},
+{
+"d": "2026-09-09",
+"tipo": "Vitrina sobre consigna",
+"equipo": "Vitrina 5",
+"inicio": "21:35",
+"fin": "22:08",
+"min": 33,
+"detalle": "T producto hasta 3.3 K por encima de la consigna (fuera de desescarche)"
+},
+{
+"d": "2026-09-09",
+"tipo": "Vitrina apagada",
+"equipo": "Vitrina 5",
+"inicio": "09:13",
+"fin": "09:52",
+"min": 38,
+"detalle": "VIT_ONOFF = Falso"
+},
+{
+"d": "2026-09-09",
+"tipo": "Vitrina sobre consigna",
+"equipo": "Vitrina 6",
+"inicio": "09:52",
+"fin": "12:06",
+"min": 134,
+"detalle": "T producto hasta 46.8 K por encima de la consigna (fuera de desescarche)"
+},
+{
+"d": "2026-09-09",
+"tipo": "Vitrina apagada",
+"equipo": "Vitrina 6",
+"inicio": "09:13",
+"fin": "09:52",
+"min": 39,
+"detalle": "VIT_ONOFF = Falso"
+},
+{
+"d": "2026-09-09",
+"tipo": "Hueco de datos",
+"equipo": "CLIMA",
+"inicio": "00:00",
+"fin": "09:13",
+"min": 554,
+"detalle": "Sin registros en CLIMA"
+},
+{
+"d": "2026-09-09",
+"tipo": "Hueco de datos",
+"equipo": "CONSUMO",
+"inicio": "00:00",
+"fin": "09:13",
+"min": 554,
+"detalle": "Sin registros en CONSUMO"
+},
+{
+"d": "2026-09-09",
+"tipo": "Hueco de datos",
+"equipo": "PRODUCCION",
+"inicio": "00:00",
+"fin": "09:13",
+"min": 554,
+"detalle": "Sin registros en PRODUCCION"
+},
+{
+"d": "2026-09-09",
+"tipo": "Hueco de datos",
+"equipo": "VALVULAS",
+"inicio": "00:00",
+"fin": "09:13",
+"min": 554,
+"detalle": "Sin registros en VALVULAS"
+},
+{
+"d": "2026-09-09",
+"tipo": "Hueco de datos",
+"equipo": "VITRINAS",
+"inicio": "00:00",
+"fin": "09:13",
+"min": 554,
+"detalle": "Sin registros en VITRINAS"
+}
+]

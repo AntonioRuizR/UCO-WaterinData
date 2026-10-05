@@ -1,0 +1,38 @@
+[
+{
+"d": "2026-09-26",
+"tipo": "Vitrina sobre consigna",
+"equipo": "Vitrina 5",
+"inicio": "21:53",
+"fin": "22:34",
+"min": 41,
+"detalle": "T producto hasta 3.2 K por encima de la consigna (fuera de desescarche)"
+},
+{
+"d": "2026-09-26",
+"tipo": "Vitrina sobre consigna",
+"equipo": "Vitrina 5",
+"inicio": "22:36",
+"fin": "23:13",
+"min": 37,
+"detalle": "T producto hasta 3.2 K por encima de la consigna (fuera de desescarche)"
+},
+{
+"d": "2026-09-26",
+"tipo": "Vitrina sobre consigna",
+"equipo": "Vitrina 5",
+"inicio": "23:17",
+"fin": "23:52",
+"min": 35,
+"detalle": "T producto hasta 3.2 K por encima de la consigna (fuera de desescarche)"
+},
+{
+"d": "2026-09-26",
+"tipo": "Ventilador incoherente",
+"equipo": "Aeroenfriador",
+"inicio": "20:54",
+"fin": "21:14",
+"min": 20,
+"detalle": "Ventilador > 0 % con potencia < 0.1 kW"
+}
+]

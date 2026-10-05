@@ -1,0 +1,101 @@
+[
+{
+"d": "2026-10-01",
+"tipo": "Vitrina sobre consigna",
+"equipo": "Vitrina 1",
+"inicio": "00:00",
+"fin": "02:41",
+"min": 162,
+"detalle": "T producto hasta 4.0 K por encima de la consigna (fuera de desescarche)"
+},
+{
+"d": "2026-10-01",
+"tipo": "Vitrina sobre consigna",
+"equipo": "Vitrina 1",
+"inicio": "21:25",
+"fin": "23:59",
+"min": 155,
+"detalle": "T producto hasta 3.9 K por encima de la consigna (fuera de desescarche)"
+},
+{
+"d": "2026-10-01",
+"tipo": "Presión baja",
+"equipo": "Anillo (entrada BdC)",
+"inicio": "00:00",
+"fin": "12:21",
+"min": 741,
+"detalle": "Presión mínima 0.73 bar (< 1.0 bar)"
+},
+{
+"d": "2026-10-01",
+"tipo": "Presión baja",
+"equipo": "Anillo (entrada BdC)",
+"inicio": "14:05",
+"fin": "23:59",
+"min": 595,
+"detalle": "Presión mínima 0.71 bar (< 1.0 bar)"
+},
+{
+"d": "2026-10-01",
+"tipo": "Presión baja",
+"equipo": "Anillo (entrada aero)",
+"inicio": "00:00",
+"fin": "12:21",
+"min": 742,
+"detalle": "Presión mínima 0.78 bar (< 1.0 bar)"
+},
+{
+"d": "2026-10-01",
+"tipo": "Presión baja",
+"equipo": "Anillo (entrada aero)",
+"inicio": "14:03",
+"fin": "23:59",
+"min": 596,
+"detalle": "Presión mínima 0.71 bar (< 1.0 bar)"
+},
+{
+"d": "2026-10-01",
+"tipo": "Ventilador incoherente",
+"equipo": "Aeroenfriador",
+"inicio": "15:29",
+"fin": "15:53",
+"min": 24,
+"detalle": "Ventilador > 0 % con potencia < 0.1 kW"
+},
+{
+"d": "2026-10-01",
+"tipo": "Ventilador incoherente",
+"equipo": "Aeroenfriador",
+"inicio": "16:46",
+"fin": "17:07",
+"min": 21,
+"detalle": "Ventilador > 0 % con potencia < 0.1 kW"
+},
+{
+"d": "2026-10-01",
+"tipo": "Ventilador incoherente",
+"equipo": "Aeroenfriador",
+"inicio": "17:41",
+"fin": "18:01",
+"min": 20,
+"detalle": "Ventilador > 0 % con potencia < 0.1 kW"
+},
+{
+"d": "2026-10-01",
+"tipo": "Ventilador incoherente",
+"equipo": "Aeroenfriador",
+"inicio": "18:05",
+"fin": "18:46",
+"min": 41,
+"detalle": "Ventilador > 0 % con potencia < 0.1 kW"
+},
+{
+"d": "2026-10-01",
+"tipo": "Ventilador incoherente",
+"equipo": "Aeroenfriador",
+"inicio": "18:47",
+"fin": "19:03",
+"min": 16,
+"detalle": "Ventilador > 0 % con potencia < 0.1 kW"
+}
+]

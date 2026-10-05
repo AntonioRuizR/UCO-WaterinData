@@ -1,0 +1,218 @@
+[
+{
+"d": "2026-09-28",
+"tipo": "Vitrina sobre consigna",
+"equipo": "Vitrina 5",
+"inicio": "00:12",
+"fin": "00:52",
+"min": 40,
+"detalle": "T producto hasta 3.2 K por encima de la consigna (fuera de desescarche)"
+},
+{
+"d": "2026-09-28",
+"tipo": "Vitrina sobre consigna",
+"equipo": "Vitrina 5",
+"inicio": "01:53",
+"fin": "02:28",
+"min": 35,
+"detalle": "T producto hasta 3.2 K por encima de la consigna (fuera de desescarche)"
+},
+{
+"d": "2026-09-28",
+"tipo": "Vitrina sobre consigna",
+"equipo": "Vitrina 5",
+"inicio": "02:37",
+"fin": "03:28",
+"min": 51,
+"detalle": "T producto hasta 3.1 K por encima de la consigna (fuera de desescarche)"
+},
+{
+"d": "2026-09-28",
+"tipo": "Presión baja",
+"equipo": "Anillo (entrada BdC)",
+"inicio": "14:04",
+"fin": "17:08",
+"min": 185,
+"detalle": "Presión mínima 0.87 bar (< 1.0 bar)"
+},
+{
+"d": "2026-09-28",
+"tipo": "Presión baja",
+"equipo": "Anillo (entrada BdC)",
+"inicio": "17:13",
+"fin": "17:27",
+"min": 14,
+"detalle": "Presión mínima 0.93 bar (< 1.0 bar)"
+},
+{
+"d": "2026-09-28",
+"tipo": "Presión baja",
+"equipo": "Anillo (entrada BdC)",
+"inicio": "17:32",
+"fin": "17:46",
+"min": 14,
+"detalle": "Presión mínima 0.90 bar (< 1.0 bar)"
+},
+{
+"d": "2026-09-28",
+"tipo": "Presión baja",
+"equipo": "Anillo (entrada BdC)",
+"inicio": "17:54",
+"fin": "18:02",
+"min": 8,
+"detalle": "Presión mínima 0.93 bar (< 1.0 bar)"
+},
+{
+"d": "2026-09-28",
+"tipo": "Presión baja",
+"equipo": "Anillo (entrada BdC)",
+"inicio": "18:08",
+"fin": "18:20",
+"min": 12,
+"detalle": "Presión mínima 0.93 bar (< 1.0 bar)"
+},
+{
+"d": "2026-09-28",
+"tipo": "Presión baja",
+"equipo": "Anillo (entrada BdC)",
+"inicio": "18:24",
+"fin": "18:38",
+"min": 14,
+"detalle": "Presión mínima 0.92 bar (< 1.0 bar)"
+},
+{
+"d": "2026-09-28",
+"tipo": "Presión baja",
+"equipo": "Anillo (entrada BdC)",
+"inicio": "18:43",
+"fin": "19:58",
+"min": 76,
+"detalle": "Presión mínima 0.91 bar (< 1.0 bar)"
+},
+{
+"d": "2026-09-28",
+"tipo": "Presión baja",
+"equipo": "Anillo (entrada BdC)",
+"inicio": "19:59",
+"fin": "20:34",
+"min": 35,
+"detalle": "Presión mínima 0.92 bar (< 1.0 bar)"
+},
+{
+"d": "2026-09-28",
+"tipo": "Presión baja",
+"equipo": "Anillo (entrada BdC)",
+"inicio": "20:34",
+"fin": "23:59",
+"min": 206,
+"detalle": "Presión mínima 0.89 bar (< 1.0 bar)"
+},
+{
+"d": "2026-09-28",
+"tipo": "Presión baja",
+"equipo": "Anillo (entrada aero)",
+"inicio": "13:59",
+"fin": "17:07",
+"min": 189,
+"detalle": "Presión mínima 0.85 bar (< 1.0 bar)"
+},
+{
+"d": "2026-09-28",
+"tipo": "Presión baja",
+"equipo": "Anillo (entrada aero)",
+"inicio": "17:12",
+"fin": "17:26",
+"min": 14,
+"detalle": "Presión mínima 0.92 bar (< 1.0 bar)"
+},
+{
+"d": "2026-09-28",
+"tipo": "Presión baja",
+"equipo": "Anillo (entrada aero)",
+"inicio": "17:36",
+"fin": "17:44",
+"min": 8,
+"detalle": "Presión mínima 0.93 bar (< 1.0 bar)"
+},
+{
+"d": "2026-09-28",
+"tipo": "Presión baja",
+"equipo": "Anillo (entrada aero)",
+"inicio": "17:54",
+"fin": "18:02",
+"min": 8,
+"detalle": "Presión mínima 0.93 bar (< 1.0 bar)"
+},
+{
+"d": "2026-09-28",
+"tipo": "Presión baja",
+"equipo": "Anillo (entrada aero)",
+"inicio": "18:12",
+"fin": "18:19",
+"min": 7,
+"detalle": "Presión mínima 0.94 bar (< 1.0 bar)"
+},
+{
+"d": "2026-09-28",
+"tipo": "Presión baja",
+"equipo": "Anillo (entrada aero)",
+"inicio": "18:26",
+"fin": "18:38",
+"min": 13,
+"detalle": "Presión mínima 0.91 bar (< 1.0 bar)"
+},
+{
+"d": "2026-09-28",
+"tipo": "Presión baja",
+"equipo": "Anillo (entrada aero)",
+"inicio": "18:43",
+"fin": "18:58",
+"min": 16,
+"detalle": "Presión mínima 0.90 bar (< 1.0 bar)"
+},
+{
+"d": "2026-09-28",
+"tipo": "Presión baja",
+"equipo": "Anillo (entrada aero)",
+"inicio": "19:04",
+"fin": "19:16",
+"min": 12,
+"detalle": "Presión mínima 0.90 bar (< 1.0 bar)"
+},
+{
+"d": "2026-09-28",
+"tipo": "Presión baja",
+"equipo": "Anillo (entrada aero)",
+"inicio": "19:16",
+"fin": "19:40",
+"min": 24,
+"detalle": "Presión mínima 0.91 bar (< 1.0 bar)"
+},
+{
+"d": "2026-09-28",
+"tipo": "Presión baja",
+"equipo": "Anillo (entrada aero)",
+"inicio": "19:40",
+"fin": "20:14",
+"min": 34,
+"detalle": "Presión mínima 0.91 bar (< 1.0 bar)"
+},
+{
+"d": "2026-09-28",
+"tipo": "Presión baja",
+"equipo": "Anillo (entrada aero)",
+"inicio": "20:19",
+"fin": "20:31",
+"min": 12,
+"detalle": "Presión mínima 0.93 bar (< 1.0 bar)"
+},
+{
+"d": "2026-09-28",
+"tipo": "Presión baja",
+"equipo": "Anillo (entrada aero)",
+"inicio": "20:38",
+"fin": "23:59",
+"min": 201,
+"detalle": "Presión mínima 0.88 bar (< 1.0 bar)"
+}
+]

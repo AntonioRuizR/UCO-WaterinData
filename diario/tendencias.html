@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Aquaring · Tendencias</title>
+<link rel="stylesheet" href="estilo.css">
+<script src="datos_horarios.js"></script>
+<script src="plotly.min.js"></script>
+<script>if (typeof Plotly === "undefined") { document.write('<script src="https://cdn.plot.ly/plotly-2.35.2.min.js"><\/script>'); }</script>
+<script src="aquaring.js"></script>
+</head><body><main>
+<nav class="top"><a href="../Informe_Aquaring.html">Informe general</a><a href="index.html">Días</a><a href="filtros.html">Filtros</a><a href="sinoptico.html">Sinóptico</a><a class="activo" href="tendencias.html">Tendencias</a><a href="comparador.html">Comparador</a><a href="anomalias.html">Anomalías</a></nav>
+<h1>Tendencias de varios días</h1>
+<div class="panel sin-ctrl">
+  <label><input type="checkbox" id="soloComp" checked> sólo días completos (24 h con datos)</label>
+  <label>Desde <input type="date" id="dDesde"></label><label>Hasta <input type="date" id="dHasta"></label>
+  <span class="nota" id="nDias"></span>
+</div>
+<h2>Firma energética: consumo diario frente a la temperatura exterior</h2>
+<div id="g1" class="fig panel"></div>
+<h2>EER aproximado (BdC + depósito 2) frente a la temperatura exterior</h2>
+<div id="g2" class="fig panel"></div>
+<h2>Calor de las vitrinas: dónde va (aprox.)</h2>
+<p class="nota">Calor cedido por las vitrinas al anillo (STA-4..9) frente al disipado en el aeroenfriador (STA-2) y al cedido al ACS (STA-3).
+«Resto» = calor de vitrinas no disipado en el aero ni enviado al ACS (queda en el anillo/depósito 1 o lo extrae la BdC). ρ·cp del agua: valores aproximados.</p>
+<div id="g3" class="fig panel"></div>
+<h2>Consumo eléctrico diario por equipo</h2>
+<div id="g4" class="fig panel"></div>
+<h2>Tabla diaria</h2>
+<p><button id="csv">Exportar CSV</button></p>
+<div class="tabla"><table id="tabla"></table></div>
+</main>
+<script>
+const $ = id => document.getElementById(id), f = AQ.fmt;
+const todos = AQ.porDia();
+if (todos.length) { $("dDesde").value = todos[0].d; $("dHasta").value = todos[todos.length - 1].d; }
+let D = [];
+const ejes = (x, y, extra) => Object.assign({}, AQ.LAYOUT_BASE, { height: 430,
+  xaxis: Object.assign({ title: { text: x }, gridcolor: "#e3e2de" }, (extra || {}).x || {}),
+  yaxis: Object.assign({ title: { text: y }, gridcolor: "#e3e2de", rangemode: "tozero" }, (extra || {}).y || {}) }, (extra || {}).l || {});
+const txt = d => `${AQ.diaSem(d.d)} ${AQ.fechaTxt(d.d)}`;
+
+function pintar() {
+  D = todos.filter(d => (!$("soloComp").checked || d.completo) && d.d >= $("dDesde").value && d.d <= $("dHasta").value);
+  $("nDias").textContent = `${D.length} días`;
+  let t = "<tr><th class='izq'>Día</th><th>Completo</th><th>T ext</th><th>T anillo</th><th>kWh total</th><th>kWh BdC</th><th>kWh aero</th><th>kWh vitrinas</th><th>BdC (h)</th><th>EER</th><th>Q vitrinas</th><th>Q aero</th><th>Q ACS</th></tr>";
+  D.forEach(d => { t += `<tr><td class='izq'><a href="${d.d.replace(/-/g, "")}/interactivo.html">${txt(d)}</a></td><td>${d.completo ? "sí" : "no"}</td>` +
+    `<td>${f(d.Text)}</td><td>${f(d.Tanillo)}</td><td>${f(d.kWh)}</td><td>${f(d.kWh_bdc)}</td><td>${f(d.kWh_aero)}</td><td>${f(d.kWh_vit)}</td>` +
+    `<td>${f(d.BdC_h)}</td><td>${f(d.eer, 2)}</td><td>${f(d.Q_vit)}</td><td>${f(d.Q_aero)}</td><td>${f(d.Q_acs)}</td></tr>`; });
+  $("tabla").innerHTML = t;
+  if (!AQ.hayPlotly()) { ["g1", "g2", "g3", "g4"].forEach(id => AQ.avisoPlotly($(id))); return; }
+  const C = AQ.COLORES;
+  const sc = (campo, nombre, i) => ({ type: "scatter", mode: "markers", name: nombre, x: D.map(d => d.Text), y: D.map(d => d[campo]),
+    text: D.map(txt), marker: { color: C[i], size: 9 }, hovertemplate: "%{text}<br>T ext %{x:.1f} °C<br>%{y:.1f} kWh<extra>" + nombre + "</extra>" });
+  Plotly.react($("g1"), [sc("kWh", "Total", 0), sc("kWh_bdc", "Bomba de calor", 1), sc("kWh_aero", "Aeroenfriador", 2), sc("kWh_vit", "Vitrinas", 3)],
+    ejes("T exterior media del día (°C)", "kWh/día"), AQ.PCONFIG);
+  const de = D.filter(d => d.eer != null);
+  Plotly.react($("g2"), [{ type: "scatter", mode: "markers", name: "EER", x: de.map(d => d.Text), y: de.map(d => d.eer), text: de.map(txt),
+    marker: { color: C[2], size: 9 }, hovertemplate: "%{text}<br>T ext %{x:.1f} °C<br>EER %{y:.2f}<extra></extra>" }],
+    ejes("T exterior media del día (°C)", "EER aprox. [-]"), AQ.PCONFIG);
+  const x = D.map(d => d.d), resto = D.map(d => d.Q_vit == null ? null : Math.max(0, d.Q_vit - (d.Q_aero || 0) - (d.Q_acs || 0)));
+  Plotly.react($("g3"), [
+    { type: "bar", name: "Disipado en aeroenfriador", x, y: D.map(d => d.Q_aero), marker: { color: C[1] } },
+    { type: "bar", name: "Cedido al ACS", x, y: D.map(d => d.Q_acs), marker: { color: C[3] } },
+    { type: "bar", name: "Resto (anillo / depósito 1 / BdC)", x, y: resto, marker: { color: C[0] } },
+    { type: "scatter", mode: "lines+markers", name: "Calor cedido por vitrinas", x, y: D.map(d => d.Q_vit), line: { color: "#0b0b0b" } }],
+    ejes("", "kWh térmicos/día", { l: { barmode: "stack" }, x: { type: "date", tickformat: "%d/%m" } }), AQ.PCONFIG);
+  const otros = D.map(d => d.kWh == null ? null : Math.max(0, d.kWh - (d.kWh_bdc || 0) - (d.kWh_aero || 0) - (d.kWh_vit || 0)));
+  Plotly.react($("g4"), [
+    { type: "bar", name: "Vitrinas", x, y: D.map(d => d.kWh_vit), marker: { color: C[0] } },
+    { type: "bar", name: "Bomba de calor", x, y: D.map(d => d.kWh_bdc), marker: { color: C[1] } },
+    { type: "bar", name: "Aeroenfriador", x, y: D.map(d => d.kWh_aero), marker: { color: C[2] } },
+    { type: "bar", name: "Resto (bombas, fan coils, aerotermia)", x, y: otros, marker: { color: C[3] } }],
+    ejes("", "kWh/día", { l: { barmode: "stack" }, x: { type: "date", tickformat: "%d/%m" } }), AQ.PCONFIG);
+}
+["soloComp", "dDesde", "dHasta"].forEach(id => $(id).addEventListener("change", pintar));
+$("csv").onclick = () => AQ.descargarCSV("aquaring_tendencias_diarias.csv",
+  ["d", "completo", "Text", "Tanillo", "Tint", "kWh", "kWh_bdc", "kWh_aero", "kWh_vit", "BdC_h", "eer", "Q_vit", "Q_aero", "Q_acs", "Q_frio"], D);
+pintar();
+</script>
+</body></html>

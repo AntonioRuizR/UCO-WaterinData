@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Aquaring · Sinóptico</title>
+<link rel="stylesheet" href="estilo.css">
+<script src="datos_horarios.js"></script>
+<script src="aquaring.js"></script>
+</head><body><main>
+<nav class="top"><a href="../Informe_Aquaring.html">Informe general</a><a href="index.html">Días</a><a href="filtros.html">Filtros</a><a class="activo" href="sinoptico.html">Sinóptico</a><a href="tendencias.html">Tendencias</a><a href="comparador.html">Comparador</a><a href="anomalias.html">Anomalías</a></nav>
+<h1>Sinóptico de la instalación</h1>
+<div class="sin-ctrl panel">
+  <label>Día <select id="dia"></select></label>
+  <button id="ant" title="Día anterior">‹</button><button id="sig" title="Día siguiente">›</button>
+  <label>Hora <input type="range" id="hora" min="0" max="23" step="1" value="12"> <b id="horaTxt"></b></label>
+  <label><input type="checkbox" id="diaEntero"> media del día completo</label>
+  <button id="play">▶ Reproducir</button>
+  <a id="enlDia" href="#">informe del día</a>
+</div>
+<p class="nota">Valores medios de la hora seleccionada (o del día). Válvulas en % de apertura: <span class="valv" style="background:#9aa">0</span> … <span class="valv" style="background:#0d366b">100</span>.
+«–» = sin dato. Energías térmicas aproximadas (ρ·cp del agua). Las posiciones de los recuadros se ajustan en config.py (SINOPTICO_POSICIONES).</p>
+<div class="sin-marco" id="marco"><div class="sin-lienzo" id="lienzo"><img src="../recursos/EsquemaInstalacion.png" alt="Esquema de la instalación"></div></div>
+</main>
+<script>
+const $ = id => document.getElementById(id);
+const f = AQ.fmt, POS = (AQ.CFG.sinoptico || {});
+const dias = AQ.dias();
+dias.forEach(d => $("dia").insertAdjacentHTML("beforeend", `<option value="${d}">${AQ.diaSem(d)} ${AQ.fechaTxt(d)}</option>`));
+const hash = location.hash.slice(1);
+if (/^\d{8}$/.test(hash)) { const d = hash.slice(0, 4) + "-" + hash.slice(4, 6) + "-" + hash.slice(6); if (dias.includes(d)) $("dia").value = d; }
+else if (dias.length) $("dia").value = dias[dias.length - 1];
+
+function escala() {
+  const w = $("marco").clientWidth, s = w / 1910;
+  $("lienzo").style.transform = `scale(${s})`;
+  $("marco").style.height = (1366 * s) + "px";
+}
+window.addEventListener("resize", escala);
+
+function colorValv(v) {
+  if (v == null) return "#bbb";
+  const t = Math.max(0, Math.min(1, v / 100));
+  const a = [154, 170, 170], b = [13, 54, 107];
+  return `rgb(${a.map((x, i) => Math.round(x + (b[i] - x) * t)).join(",")})`;
+}
+const valv = (n, v) => `V-${n} <span class="valv" style="background:${colorValv(v)}">${v == null ? "–" : Math.round(v) + " %"}</span>`;
+const T = v => f(v, 1) + " °C", Q = v => f(v, 2), E = v => f(v, 2) + " kWh";
+const modo = { aero: "→ aero", deposito: "→ depósito 1", reparto: "reparto", fancoils: "→ fan coils" };
+
+function filaActual() {
+  const d = $("dia").value, rows = AQ.filas.filter(r => r.d === d);
+  if ($("diaEntero").checked) {          // media del día (sumas para energías y minutos)
+    const o = { d, h: null };
+    AQ.cols.forEach(c => {
+      if (c === "d" || c === "h") return;
+      const vals = rows.map(r => r[c]);
+      o[c] = /^(kWh|Q_|kWv|BdC_min|Aero_min|Aerot_min|ONv|Dv)/.test(c) ? AQ.suma(vals) : AQ.media(vals);
+    });
+    o.mVit = null; o.mBdc = null; o.esDia = true;
+    return o;
+  }
+  return rows.find(r => r.h === +$("hora").value) || { d, h: +$("hora").value, vacia: true };
+}
+
+function cajas(r) {
+  const min = r.esDia ? " h" : " min", divm = r.esDia ? 60 : 1, mm = v => v == null ? "–" : f(v / divm, r.esDia ? 1 : 0) + min;
+  const sta = (k, nom) => `<b>${nom}</b><br>${Q(r["S" + k + "q"])} m³/h · Timp ${T(r["S" + k + "ti"])} · Tret ${T(r["S" + k + "tr"])}`;
+  const C = {
+    ext: `<b>${AQ.diaSem(r.d)} ${AQ.fechaTxt(r.d)} ${r.esDia ? "· día completo" : "· " + r.h + ":00–" + (r.h + 1) + ":00"}</b><br>` +
+      `T exterior ${T(r.Text)} · HR ext ${f(r.HRext, 0)} %<br>Datos en la hora: ${f(r.cob, 0)} %` + (r.vacia ? "<br><span class='aviso'>sin datos</span>" : ""),
+    aero: `<b>Aeroenfriador</b><br>En marcha ${mm(r.Aero_min)} · ventilador ${f(r.Vent, 0)} %<br>` +
+      `Agua entrada ${T(r.Aero_tin)} · salida ${T(r.Aero_tout)} · consigna ${T(r.SPaero)}<br>` +
+      `Eléctrico ${E(r.kWh_aero)} · calor disipado ${E(r.Q_aero)} térm.<br>Presión entrada ${f(r.Pres_aero, 2)} bar`,
+    sta2: sta(2, "STA-2 (aero)"),
+    v4: valv(4, r.V4),
+    v3: valv(3, r.V3) + (r.mVit ? ` <span class="m">${modo[r.mVit]}</span>` : ""),
+    v2: valv(2, r.V2),
+    v1: valv(1, r.V1) + (r.acs == null ? "" : ` <span class="m">${r.acs ? "ACS sí" : "ACS no"}</span>`),
+    v11: valv(11, r.V11), v13: valv(13, r.V13),
+    v12: valv(12, r.V12) + (r.mBdc ? ` <span class="m">${modo[r.mBdc]}</span>` : ""),
+    sta1: sta(1, "STA-1 (depósito 1)"), sta10: sta(10, "STA-10"), sta11: sta(11, "STA-11 (dep. 2)") + `<br>Frío entregado ${E(r.Q_frio)} térm.`,
+    sta3: sta(3, "STA-3 (ACS)") + `<br>Calor al ACS ${E(r.Q_acs)} térm.`,
+    bombas1: `<b>Bombas</b> ${E(r.kWh_bombas)}`,
+    bombas2: `<b>Presión entrada BdC</b> ${f(r.Pres_bdc, 2)} bar`,
+    bdc: `<b>Bomba de calor</b><br>En marcha ${mm(r.BdC_min)} · capacidad ${f(r.BdC_cap, 0)} %<br>` +
+      `Agua entrada ${T(r.BdC_tin)} · salida ${T(r.BdC_tout)}<br>Consigna activa ${T(r.SPbdc)}<br>` +
+      `Eléctrico ${E(r.kWh_bdc)} · EER aprox. ${f(r.kWh_bdc >= AQ.CFG.eer_min_kwh ? r.Q_frio / r.kWh_bdc : null, 2)}`,
+    aerot: `<b>Aerotermia</b> ON ${mm(r.Aerot_min)} · ${E(r.kWh_aerot)}`,
+    fc1: `<b>Fan coil 1</b> · T ${T(r.FC1_T)}<br>SP frío ${T(r.FC1_spf)} · calor ${T(r.FC1_spc)}<br>` + valv(14, r.V14) +
+      ` · STA-12 ${Q(r.S12q)} m³/h<br>Timp ${T(r.S12ti)} · Tret ${T(r.S12tr)}<br>Fan coils (ambos) ${E(r.kWh_fc)}`,
+    fc2: `<b>Fan coil 2</b> · T ${T(r.FC2_T)}<br>SP frío ${T(r.FC2_spf)} · calor ${T(r.FC2_spc)}<br>` + valv(15, r.V15) +
+      ` · STA-13 ${Q(r.S13q)} m³/h<br>Timp ${T(r.S13ti)} · Tret ${T(r.S13tr)}`,
+    interior: `<b>Interior</b> T ${T(r.Tint)}<br><b>Anillo</b> entrada vitrinas ${T(r.Tanillo)} · salida ${T(r.Tanillo_ret)}<br>` +
+      `Calor cedido por vitrinas ${E(r.Q_vit)} térm.<br>Consumo total ${E(r.kWh)}`
+  };
+  for (let k = 1; k <= 6; k++) {
+    C["vit" + k] = `<b>Vitrina ${k}</b> · T ${T(r["Tv" + k])} (SP ${T(r["SPv" + k])})<br>Evap ${T(r["Ev" + k])} · comp ${f(r["Cv" + k], 0)} rpm<br>` +
+      `${E(r["kWv" + k])} · desesc. ${mm(r["Dv" + k])}<br>` + valv(k + 4, r["V" + (k + 4)]) +
+      ` · STA-${k + 3} ${Q(r["S" + (k + 3) + "q"])} m³/h ΔT ${f(r["S" + (k + 3) + "tr"] != null && r["S" + (k + 3) + "ti"] != null ? r["S" + (k + 3) + "tr"] - r["S" + (k + 3) + "ti"] : null, 1)} K`;
+  }
+  return C;
+}
+
+function pintar() {
+  const r = filaActual();
+  $("horaTxt").textContent = $("diaEntero").checked ? "día completo" : `${$("hora").value}:00`;
+  $("enlDia").href = r.d.replace(/-/g, "") + "/interactivo.html";
+  const C = cajas(r), L = $("lienzo");
+  L.querySelectorAll(".caja").forEach(e => e.remove());
+  Object.keys(C).forEach(k => {
+    const p = POS[k];
+    if (!p) return;
+    const div = document.createElement("div");
+    div.className = "caja" + (r.vacia ? " off" : "");
+    div.style.left = p[0] + "px"; div.style.top = p[1] + "px";
+    div.innerHTML = C[k];
+    L.appendChild(div);
+  });
+  location.replace("#" + r.d.replace(/-/g, ""));
+}
+let timer = null;
+$("play").onclick = () => {
+  if (timer) { clearInterval(timer); timer = null; $("play").textContent = "▶ Reproducir"; return; }
+  $("diaEntero").checked = false;
+  $("play").textContent = "⏸ Pausa";
+  timer = setInterval(() => { $("hora").value = (+$("hora").value + 1) % 24; pintar(); }, 1200);
+};
+const mover = n => { const i = dias.indexOf($("dia").value) + n; if (i >= 0 && i < dias.length) { $("dia").value = dias[i]; pintar(); } };
+$("ant").onclick = () => mover(-1); $("sig").onclick = () => mover(1);
+["dia", "hora", "diaEntero"].forEach(id => $(id).addEventListener("input", pintar));
+escala(); pintar();
+</script>
+</body></html>

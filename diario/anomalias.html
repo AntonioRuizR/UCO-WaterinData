@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Aquaring · Anomalías</title>
+<link rel="stylesheet" href="estilo.css">
+<script src="datos_horarios.js"></script>
+<script src="datos_anomalias.js"></script>
+<script src="aquaring.js"></script>
+</head><body><main>
+<nav class="top"><a href="../Informe_Aquaring.html">Informe general</a><a href="index.html">Días</a><a href="filtros.html">Filtros</a><a href="sinoptico.html">Sinóptico</a><a href="tendencias.html">Tendencias</a><a href="comparador.html">Comparador</a><a class="activo" href="anomalias.html">Anomalías</a></nav>
+<h1>Detección de anomalías</h1>
+<p class="sub" id="criterios"></p>
+<div class="panel sin-ctrl">
+  <label>Tipo <select id="tipo"><option value="">todos</option></select></label>
+  <label>Equipo <select id="equipo"><option value="">todos</option></select></label>
+  <label>Desde <input type="date" id="dDesde"></label><label>Hasta <input type="date" id="dHasta"></label>
+  <button id="csv">Exportar CSV</button>
+</div>
+<div class="kpis" id="kpis"></div>
+<div class="tabla"><table id="tabla"></table></div>
+</main>
+<script>
+const $ = id => document.getElementById(id), A = window.AQ_ANOMALIAS || [], c = (AQ.CFG.anom || {});
+$("criterios").innerHTML = `Criterios (config.py, ANOM_*): vitrina con T producto &gt; consigna + ${c.vit_dt_k} K durante &gt; ${c.vit_min} min ` +
+  `(fuera de desescarche y su recuperación) · vitrina apagada · huecos de datos &gt; ${c.hueco_min} min · presión del anillo &lt; ${c.pres_min_bar} bar · ` +
+  `ventilador del aero incoherente con su consumo (desde el 24/09/2026) · más de ${c.bdc_arranques} arranques de la BdC al día. ` +
+  `Son criterios de partida: ajústalos a la instalación.`;
+[...new Set(A.map(a => a.tipo))].sort().forEach(t => $("tipo").insertAdjacentHTML("beforeend", `<option>${t}</option>`));
+[...new Set(A.map(a => a.equipo))].sort().forEach(t => $("equipo").insertAdjacentHTML("beforeend", `<option>${t}</option>`));
+const ds = A.map(a => a.d).sort();
+if (ds.length) { $("dDesde").value = ds[0]; $("dHasta").value = ds[ds.length - 1]; }
+let R = [];
+function pintar() {
+  R = A.filter(a => (!$("tipo").value || a.tipo === $("tipo").value) && (!$("equipo").value || a.equipo === $("equipo").value) &&
+    (!$("dDesde").value || a.d >= $("dDesde").value) && (!$("dHasta").value || a.d <= $("dHasta").value));
+  const porTipo = {};
+  R.forEach(a => { porTipo[a.tipo] = (porTipo[a.tipo] || 0) + 1; });
+  $("kpis").innerHTML = `<div class="kpi"><b>${R.length}</b><span>avisos</span></div><div class="kpi"><b>${new Set(R.map(a => a.d)).size}</b><span>días con avisos</span></div>` +
+    Object.keys(porTipo).sort().map(t => `<div class="kpi"><b>${porTipo[t]}</b><span>${t}</span></div>`).join("");
+  let t = "<tr><th class='izq'>Día</th><th class='izq'>Tipo</th><th class='izq'>Equipo</th><th>Inicio</th><th>Fin</th><th>Duración (min)</th><th class='izq'>Detalle</th><th class='izq'></th></tr>";
+  R.forEach(a => { const k = a.d.replace(/-/g, "");
+    t += `<tr><td class='izq'>${AQ.diaSem(a.d)} ${AQ.fechaTxt(a.d)}</td><td class='izq'>${a.tipo}</td><td class='izq'>${a.equipo}</td><td>${a.inicio}</td><td>${a.fin}</td>` +
+      `<td>${a.min}</td><td class='izq'>${a.detalle}</td><td class='izq'><a href="${k}/interactivo.html">ver día</a></td></tr>`; });
+  $("tabla").innerHTML = R.length ? t : "<tr><td class='izq'>Sin avisos con estos filtros.</td></tr>";
+}
+["tipo", "equipo", "dDesde", "dHasta"].forEach(id => $(id).addEventListener("change", pintar));
+$("csv").onclick = () => AQ.descargarCSV("aquaring_anomalias.csv", ["d", "tipo", "equipo", "inicio", "fin", "min", "detalle"], R);
+pintar();
+</script>
+</body></html>
