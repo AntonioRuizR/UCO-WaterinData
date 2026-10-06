@@ -7,7 +7,7 @@
   ],
   "CONSUMO": [
    "20260727_CONSUMO.csv",
-   1790261576.0,
+   1790261576.9827478,
    7196467
   ],
   "PRODUCCION": [
@@ -17,14 +17,15 @@
   ],
   "VALVULAS": [
    "20260727_VALVULAS.csv",
-   1790261577.0,
+   1790261577.8783576,
    7544100
   ],
   "VITRINAS": [
    "20260727_VITRINAS.csv",
    1785189598.0,
    3851083
-  ]
+  ],
+  "PRECIOS": "c2b9052ce04d1c39"
  },
  "version": 1,
  "indicadores": {
@@ -48,6 +49,28 @@
   "EER aprox. BdC + dep. 2 (día)": 2.665504940525902,
   "BdC en marcha EST=3 (h)": 23.99861111111111,
   "T ext mín / media / máx (°C)": "20,9 / 31,2 / 42,2",
-  "Datos registrados, peor fichero (%)": 100.0
+  "Datos registrados, peor fichero (%)": 100.0,
+  "Coste energía PVPC 2.0TD (€, sin imp.)": 27.014717796,
+  "Coste energía PVPC 2.0TD (€, con IEE+IVA)": 34.35903691712352,
+  "Precio medio del día PVPC 2.0TD (€/MWh)": 170.63416666666666,
+  "Precio pagado PVPC 2.0TD (€/MWh)": 165.80566989504695,
+  "Precio pagado / medio PVPC 2.0TD": 0.9717026380710014,
+  "Coste energía Mercado diario (€, sin imp.)": 14.453489217000001,
+  "Coste energía Mercado diario (€, con IEE+IVA)": 18.38286719625408,
+  "Precio medio del día Mercado diario (€/MWh)": 98.01933333333335,
+  "Precio pagado Mercado diario (€/MWh)": 88.70980922482049,
+  "Precio pagado / medio Mercado diario": 0.9050235928778044,
+  "Coste Vitrinas con PVPC 2.0TD (€, sin imp.)": 10.849163668000006,
+  "Coste Bomba de calor con PVPC 2.0TD (€, sin imp.)": 14.135232255999993,
+  "Coste Aeroenfriador con PVPC 2.0TD (€, sin imp.)": 0.046379690000000015,
+  "Coste Bombas con PVPC 2.0TD (€, sin imp.)": 1.7695206440000013,
+  "Coste Fan coils con PVPC 2.0TD (€, sin imp.)": 0.1532556100000001,
+  "Coste Aerotermia + R con PVPC 2.0TD (€, sin imp.)": 0.06116592800000002,
+  "Coste Vitrinas con Mercado diario (€, sin imp.)": 6.330972102400004,
+  "Coste Bomba de calor con Mercado diario (€, sin imp.)": 6.989182675799996,
+  "Coste Aeroenfriador con Mercado diario (€, sin imp.)": 0.026920979000000005,
+  "Coste Bombas con Mercado diario (€, sin imp.)": 1.0167921214000009,
+  "Coste Fan coils con Mercado diario (€, sin imp.)": 0.05438108600000004,
+  "Coste Aerotermia + R con Mercado diario (€, sin imp.)": 0.03524025240000002
  }
 }

@@ -24,6 +24,21 @@
 <div id="g3" class="fig panel"></div>
 <h2>Consumo eléctrico diario por equipo</h2>
 <div id="g4" class="fig panel"></div>
+<h2>Coste diario de la energía</h2>
+<div class="panel sin-ctrl">
+  <label>Precio <select id="serie"><option value="pvpc">PVPC 2.0TD</option><option value="spot">Mercado diario</option></select></label>
+  <label>Impuestos <select id="imp"><option value="">sin impuestos</option><option value="1">con IEE + IVA</option></select></label>
+  <span class="nota" id="notaImp"></span>
+</div>
+<p class="nota">Coste = kWh de cada hora × precio de la hora (ESIOS). Ninguna de las dos series es la factura real: son referencias.
+Sin término de potencia. Los días sin precios no aparecen.</p>
+<div id="g5" class="fig panel"></div>
+<h2>Coste diario frente a la temperatura exterior</h2>
+<div id="g6" class="fig panel"></div>
+<h2>Precio pagado frente al precio medio del día</h2>
+<p class="nota">Precio pagado = coste / kWh (media ponderada por el consumo). Por debajo de 1: se consumió más en las horas baratas
+del día. Es el indicador que debería mejorar con un control que desplace consumos (precarga de depósitos, ACS, etc.).</p>
+<div id="g7" class="fig panel"></div>
 <h2>Tabla diaria</h2>
 <p><button id="csv">Exportar CSV</button></p>
 <div class="tabla"><table id="tabla"></table></div>
@@ -41,12 +56,14 @@ const txt = d => `${AQ.diaSem(d.d)} ${AQ.fechaTxt(d.d)}`;
 function pintar() {
   D = todos.filter(d => (!$("soloComp").checked || d.completo) && d.d >= $("dDesde").value && d.d <= $("dHasta").value);
   $("nDias").textContent = `${D.length} días`;
-  let t = "<tr><th class='izq'>Día</th><th>Completo</th><th>T ext</th><th>T anillo</th><th>kWh total</th><th>kWh BdC</th><th>kWh aero</th><th>kWh vitrinas</th><th>BdC (h)</th><th>EER</th><th>Q vitrinas</th><th>Q aero</th><th>Q ACS</th></tr>";
+  let t = "<tr><th class='izq'>Día</th><th>Completo</th><th>T ext</th><th>T anillo</th><th>kWh total</th><th>kWh BdC</th><th>kWh aero</th><th>kWh vitrinas</th><th>BdC (h)</th><th>EER</th><th>Q vitrinas</th><th>Q aero</th><th>Q ACS</th><th>€ PVPC</th><th>€ PVPC c/imp.</th><th>€ mercado</th><th>€ mercado c/imp.</th><th>Pagado/medio PVPC</th><th>Pagado/medio mercado</th></tr>";
   D.forEach(d => { t += `<tr><td class='izq'><a href="${d.d.replace(/-/g, "")}/interactivo.html">${txt(d)}</a></td><td>${d.completo ? "sí" : "no"}</td>` +
     `<td>${f(d.Text)}</td><td>${f(d.Tanillo)}</td><td>${f(d.kWh)}</td><td>${f(d.kWh_bdc)}</td><td>${f(d.kWh_aero)}</td><td>${f(d.kWh_vit)}</td>` +
-    `<td>${f(d.BdC_h)}</td><td>${f(d.eer, 2)}</td><td>${f(d.Q_vit)}</td><td>${f(d.Q_aero)}</td><td>${f(d.Q_acs)}</td></tr>`; });
+    `<td>${f(d.BdC_h)}</td><td>${f(d.eer, 2)}</td><td>${f(d.Q_vit)}</td><td>${f(d.Q_aero)}</td><td>${f(d.Q_acs)}</td>` +
+    `<td>${f(d.C_pvpc, 2)}</td><td>${f(d.Ci_pvpc, 2)}</td><td>${f(d.C_spot, 2)}</td><td>${f(d.Ci_spot, 2)}</td>` +
+    `<td>${f(d.Rel_pvpc, 2)}</td><td>${f(d.Rel_spot, 2)}</td></tr>`; });
   $("tabla").innerHTML = t;
-  if (!AQ.hayPlotly()) { ["g1", "g2", "g3", "g4"].forEach(id => AQ.avisoPlotly($(id))); return; }
+  if (!AQ.hayPlotly()) { ["g1", "g2", "g3", "g4", "g5", "g6", "g7"].forEach(id => AQ.avisoPlotly($(id))); return; }
   const C = AQ.COLORES;
   const sc = (campo, nombre, i) => ({ type: "scatter", mode: "markers", name: nombre, x: D.map(d => d.Text), y: D.map(d => d[campo]),
     text: D.map(txt), marker: { color: C[i], size: 9 }, hovertemplate: "%{text}<br>T ext %{x:.1f} °C<br>%{y:.1f} kWh<extra>" + nombre + "</extra>" });
@@ -70,10 +87,39 @@ function pintar() {
     { type: "bar", name: "Aeroenfriador", x, y: D.map(d => d.kWh_aero), marker: { color: C[2] } },
     { type: "bar", name: "Resto (bombas, fan coils, aerotermia)", x, y: otros, marker: { color: C[3] } }],
     ejes("", "kWh/día", { l: { barmode: "stack" }, x: { type: "date", tickformat: "%d/%m" } }), AQ.PCONFIG);
+  pintarCoste();
 }
+function pintarCoste() {
+  if (!AQ.hayPlotly()) return;
+  const C = AQ.COLORES, s = $("serie").value, imp = !!$("imp").value;
+  const nomS = s === "pvpc" ? "PVPC 2.0TD" : "mercado diario", sufijo = imp ? " (con IEE + IVA)" : " (sin impuestos)";
+  $("notaImp").textContent = imp ? "Tipos: " + (AQ.CFG.impuestos || "") : "";
+  const Dc = D.filter(d => AQ.coste(d.h, s) != null), x = Dc.map(d => d.d);
+  const grupos = [["kWh_vit", "Vitrinas", 0], ["kWh_bdc", "Bomba de calor", 1], ["kWh_aero", "Aeroenfriador", 2],
+                  ["kWh_bombas", "Bombas", 3], ["kWh_fc", "Fan coils", 4], ["kWh_aerot", "Aerotermia + R", 5]];
+  Plotly.react($("g5"), grupos.map(([campo, nom, i]) => ({ type: "bar", name: nom, x, y: Dc.map(d => AQ.coste(d.h, s, campo, imp)),
+    marker: { color: C[i] }, hovertemplate: "%{x|%d/%m}: %{y:.2f} €<extra>" + nom + "</extra>" })),
+    ejes("", "€/día con " + nomS + sufijo, { l: { barmode: "stack" },
+      x: { type: "date", tickformat: "%d/%m" } }), AQ.PCONFIG);
+  const sc = (ser, nombre, i) => {
+    const Ds = D.filter(d => AQ.coste(d.h, ser) != null && d.Text != null);
+    return { type: "scatter", mode: "markers", name: nombre, x: Ds.map(d => d.Text), y: Ds.map(d => AQ.coste(d.h, ser, "kWh", imp)),
+      text: Ds.map(txt), marker: { color: C[i], size: 9 }, hovertemplate: "%{text}<br>T ext %{x:.1f} °C<br>%{y:.2f} €<extra>" + nombre + "</extra>" };
+  };
+  Plotly.react($("g6"), [sc("pvpc", "PVPC 2.0TD", 0), sc("spot", "Mercado diario", 1)],
+    ejes("T exterior media del día (°C)", "€/día" + sufijo), AQ.PCONFIG);
+  const rel = (campo, nombre, i) => ({ type: "scatter", mode: "lines+markers", name: nombre, x: D.map(d => d.d), y: D.map(d => d[campo]),
+    line: { color: C[i] }, hovertemplate: "%{x|%d/%m}: %{y:.2f}<extra>" + nombre + "</extra>" });
+  const x0 = D.length ? D[0].d : null, x1 = D.length ? D[D.length - 1].d : null;
+  Plotly.react($("g7"), [rel("Rel_pvpc", "PVPC 2.0TD", 0), rel("Rel_spot", "Mercado diario", 1),
+    { type: "scatter", mode: "lines", name: "pagado = medio", x: [x0, x1], y: [1, 1], line: { color: "#52514e", dash: "dash", width: 1 }, hoverinfo: "skip" }],
+    ejes("", "precio pagado / precio medio [-]", { x: { type: "date", tickformat: "%d/%m" }, y: { rangemode: "normal" } }), AQ.PCONFIG);
+}
+["serie", "imp"].forEach(id => $(id).addEventListener("change", pintarCoste));
 ["soloComp", "dDesde", "dHasta"].forEach(id => $(id).addEventListener("change", pintar));
 $("csv").onclick = () => AQ.descargarCSV("aquaring_tendencias_diarias.csv",
-  ["d", "completo", "Text", "Tanillo", "Tint", "kWh", "kWh_bdc", "kWh_aero", "kWh_vit", "BdC_h", "eer", "Q_vit", "Q_aero", "Q_acs", "Q_frio"], D);
+  ["d", "completo", "Text", "Tanillo", "Tint", "kWh", "kWh_bdc", "kWh_aero", "kWh_vit", "BdC_h", "eer", "Q_vit", "Q_aero", "Q_acs", "Q_frio",
+   "P_pvpc", "P_spot", "C_pvpc", "Ci_pvpc", "C_spot", "Ci_spot", "Pag_pvpc", "Pag_spot", "Rel_pvpc", "Rel_spot"], D);
 pintar();
 </script>
 </body></html>

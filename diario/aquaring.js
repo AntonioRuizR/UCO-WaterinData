@@ -67,6 +67,30 @@ const AQ = (function () {
     return e ? q / e : null;
   }
 
+  // Coste de un conjunto de horas con una serie de precios ("pvpc" | "spot").
+  // campo = columna de kWh ("kWh" total o "kWh_bdc", ...). Devuelve null si alguna hora con consumo no
+  // tiene precio (igual que el informe: el coste nunca se completa con suposiciones).
+  function coste(rows, serie, campo = "kWh", conImp = false) {
+    let tot = 0, hay = false;
+    for (const r of rows) {
+      const e = r[campo], p = r["P_" + serie];
+      if (e == null) continue;
+      if (p == null) { if (e > 0) return null; continue; }
+      let c = e * p / 1000;
+      if (conImp) {               // FI = (1 + IEE)·(1 + IVA) del día; null si no hay tipos para esa fecha
+        if (r.FI == null) return null;
+        c *= r.FI;
+      }
+      tot += c; hay = true;
+    }
+    return hay ? tot : null;
+  }
+  // Precio pagado (€/MWh, ponderado por el consumo) y relación pagado / medio de las horas
+  function precioPagado(rows, serie) {
+    const c = coste(rows, serie), e = suma(rows.filter(r => r["P_" + serie] != null).map(r => r.kWh));
+    return c != null && e ? 1000 * c / e : null;
+  }
+
   // Resumen por día (a partir de las filas horarias)
   function porDia(rows) {
     const g = {};
@@ -80,7 +104,11 @@ const AQ = (function () {
         kWh_vit: suma(h.map(r => r.kWh_vit)), Q_vit: suma(h.map(r => r.Q_vit)), Q_aero: suma(h.map(r => r.Q_aero)),
         Q_acs: suma(h.map(r => r.Q_acs)), Q_frio: suma(h.map(r => r.Q_frio)),
         Text: media(h.map(r => r.Text)), Tanillo: media(h.map(r => r.Tanillo)), Tint: media(h.map(r => r.Tint)),
-        BdC_h: (suma(h.map(r => r.BdC_min)) || 0) / 60, eer: eer(h)
+        BdC_h: (suma(h.map(r => r.BdC_min)) || 0) / 60, eer: eer(h),
+        P_pvpc: media(h.map(r => r.P_pvpc)), P_spot: media(h.map(r => r.P_spot)),
+        C_pvpc: coste(h, "pvpc"), Ci_pvpc: coste(h, "pvpc", "kWh", true),
+        C_spot: coste(h, "spot"), Ci_spot: coste(h, "spot", "kWh", true),
+        Pag_pvpc: precioPagado(h, "pvpc"), Pag_spot: precioPagado(h, "spot")
       };
     });
   }
@@ -127,6 +155,15 @@ const AQ = (function () {
   };
   const PCONFIG = { responsive: true, displaylogo: false, modeBarButtonsToRemove: ["select2d", "lasso2d"] };
 
-  return { filas, cols: H.cols, CFG, NOMBRES_MODO, fmt, media, suma, dias, fechaTxt, diaSem, eer, porDia, tramos,
+  // relación precio pagado / precio medio de cada día
+  const _porDia = porDia;
+  function porDiaR(rows) {
+    return _porDia(rows).map(d => Object.assign(d, {
+      Rel_pvpc: d.Pag_pvpc != null && d.P_pvpc ? d.Pag_pvpc / d.P_pvpc : null,
+      Rel_spot: d.Pag_spot != null && d.P_spot ? d.Pag_spot / d.P_spot : null }));
+  }
+
+  return { filas, cols: H.cols, CFG, NOMBRES_MODO, fmt, media, suma, dias, fechaTxt, diaSem, eer, porDia: porDiaR, tramos,
+           coste, precioPagado,
            descargarCSV, hayPlotly, avisoPlotly, COLORES, LAYOUT_BASE, PCONFIG, DIAS_SEM };
 })();

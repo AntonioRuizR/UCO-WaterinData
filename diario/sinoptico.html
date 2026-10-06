@@ -52,9 +52,11 @@ function filaActual() {
     AQ.cols.forEach(c => {
       if (c === "d" || c === "h") return;
       const vals = rows.map(r => r[c]);
-      o[c] = /^(kWh|Q_|kWv|BdC_min|Aero_min|Aerot_min|ONv|Dv)/.test(c) ? AQ.suma(vals) : AQ.media(vals);
+      o[c] = /^(kWh|Q_|kWv|BdC_min|Aero_min|Aerot_min|ONv|Dv|C_|Ci_)/.test(c) ? AQ.suma(vals) : AQ.media(vals);
     });
     o.mVit = null; o.mBdc = null; o.esDia = true;
+    // el coste del día sólo si todas las horas con consumo tienen precio
+    ["pvpc", "spot"].forEach(s => { o["C_" + s] = AQ.coste(rows, s); o["Ci_" + s] = AQ.coste(rows, s, "kWh", true); });
     return o;
   }
   return rows.find(r => r.h === +$("hora").value) || { d, h: +$("hora").value, vacia: true };
@@ -89,7 +91,9 @@ function cajas(r) {
     fc2: `<b>Fan coil 2</b> · T ${T(r.FC2_T)}<br>SP frío ${T(r.FC2_spf)} · calor ${T(r.FC2_spc)}<br>` + valv(15, r.V15) +
       ` · STA-13 ${Q(r.S13q)} m³/h<br>Timp ${T(r.S13ti)} · Tret ${T(r.S13tr)}`,
     interior: `<b>Interior</b> T ${T(r.Tint)}<br><b>Anillo</b> entrada vitrinas ${T(r.Tanillo)} · salida ${T(r.Tanillo_ret)}<br>` +
-      `Calor cedido por vitrinas ${E(r.Q_vit)} térm.<br>Consumo total ${E(r.kWh)}`
+      `Calor cedido por vitrinas ${E(r.Q_vit)} térm.<br>Consumo total ${E(r.kWh)}` +
+      `<br><b>Precio${r.esDia ? " medio" : ""}</b> PVPC ${f(r.P_pvpc, 0)} · merc. ${f(r.P_spot, 0)} €/MWh` +
+      `<br><b>Coste${r.esDia ? " día" : " hora"}</b> PVPC ${f(r.C_pvpc, 2)} € · merc. ${f(r.C_spot, 2)} €`
   };
   for (let k = 1; k <= 6; k++) {
     C["vit" + k] = `<b>Vitrina ${k}</b> · T ${T(r["Tv" + k])} (SP ${T(r["SPv" + k])})<br>Evap ${T(r["Ev" + k])} · comp ${f(r["Cv" + k], 0)} rpm<br>` +

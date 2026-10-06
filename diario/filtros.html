@@ -43,6 +43,11 @@ Recorrido del agua según la posición media de la válvula en la hora: ≥ <spa
     <label>Algún desescarche en la hora <select id="defrost"><option value="">cualquiera</option><option value="si">sí</option><option value="no">no</option></select></label>
     <label>Consumo total (kWh/h) <span class="rango"><input type="number" step="0.5" id="kWhMin"> – <input type="number" step="0.5" id="kWhMax"></span></label>
   </fieldset>
+  <fieldset><legend>Precio de la electricidad (€/MWh)</legend>
+    <label>PVPC 2.0TD <span class="rango"><input type="number" step="5" id="PpvpcMin"> – <input type="number" step="5" id="PpvpcMax"></span></label>
+    <label>Mercado diario <span class="rango"><input type="number" step="5" id="PspotMin"> – <input type="number" step="5" id="PspotMax"></span></label>
+    <label>Horas sin precio <select id="conPrecio"><option value="">incluir</option><option value="si">excluir</option></select></label>
+  </fieldset>
 </div>
 <p><button class="prim" id="aplicar">Aplicar</button> <button id="limpiar" type="button">Limpiar</button>
  <button id="csv" type="button">Exportar CSV de las horas filtradas</button></p>
@@ -53,7 +58,9 @@ Recorrido del agua según la posición media de la válvula en la hora: ≥ <spa
 <div id="graf" class="fig panel"></div>
 <h2>Días con horas que cumplen el filtro</h2>
 <div class="tabla"><table id="tabla"></table></div>
-<p class="nota">EER aproximado = frío entregado por el depósito 2 (STA-11) / electricidad de la BdC, sólo en horas con la BdC trabajando.
+<p class="nota">Coste = kWh de cada hora × precio de la hora (ESIOS), sin impuestos; € PVPC / € mercado de la tabla = coste de las
+horas filtradas de ese día («–» si alguna no tiene precio). Precio pagado = coste / kWh (media ponderada por el consumo).
+EER aproximado = frío entregado por el depósito 2 (STA-11) / electricidad de la BdC, sólo en horas con la BdC trabajando.
 Potencias térmicas con ρ·cp del agua (glicol en % desconocido).</p>
 </main>
 <script>
@@ -84,7 +91,9 @@ function filtrar() {
     siNo(r.acs, $("acs").value) && (!$("mVit").value || r.mVit === $("mVit").value) &&
     (!$("mBdc").value || r.mBdc === $("mBdc").value) &&
     siNo(r.bdcOn, $("bdcOn").value) && siNo(r.ventOn, $("ventOn").value) && siNo(r.defrost, $("defrost").value) &&
-    enRango(r.kWh, num("kWhMin"), num("kWhMax")));
+    enRango(r.kWh, num("kWhMin"), num("kWhMax")) &&
+    enRango(r.P_pvpc, num("PpvpcMin"), num("PpvpcMax")) && enRango(r.P_spot, num("PspotMin"), num("PspotMax")) &&
+    ($("conPrecio").value !== "si" || (r.P_pvpc != null && r.P_spot != null)));
 }
 
 function pintar() {
@@ -101,15 +110,24 @@ function pintar() {
     [f(AQ.media(R.map(r => r.Q_vit)), 2), "kW térm. cedidos por vitrinas (aprox.)"],
     [f(AQ.media(R.map(r => r.Text)), 1), "T exterior media (°C)"],
     [f(AQ.media(R.map(r => r.Tanillo)), 1), "T anillo media (°C)"]];
+  // coste: sólo horas con precio (las demás se cuentan aparte)
+  const conP = s => R.filter(r => r["P_" + s] != null);
+  const sinP = R.filter(r => r.kWh != null && (r.P_pvpc == null || r.P_spot == null)).length;
+  [["pvpc", "PVPC"], ["spot", "mercado"]].forEach(([s, n]) => {
+    const c = AQ.coste(conP(s), s);
+    kpis.push([c == null ? "–" : f(c, 2) + " €", `coste ${n} sin imp. (horas con precio)`]);
+    kpis.push([f(AQ.precioPagado(conP(s), s), 1), `precio pagado ${n} (€/MWh)`]);
+  });
+  if (sinP) kpis.push([sinP, "horas sin precio (no valoradas)"]);
   $("kpis").innerHTML = kpis.map(k => `<div class="kpi"><b>${k[0]}</b><span>${k[1]}</span></div>`).join("");
 
   const porDia = AQ.porDia(R);
-  let t = "<tr><th class='izq'>Día</th><th class='izq'>Tramos que cumplen</th><th>Horas</th><th>kWh</th><th>kWh/h</th><th>T ext media</th><th>T anillo media</th><th>EER</th><th class='izq'></th></tr>";
+  let t = "<tr><th class='izq'>Día</th><th class='izq'>Tramos que cumplen</th><th>Horas</th><th>kWh</th><th>kWh/h</th><th>T ext media</th><th>T anillo media</th><th>EER</th><th>€ PVPC</th><th>€ mercado</th><th class='izq'></th></tr>";
   porDia.forEach(d => {
     const tr = AQ.tramos(d.h.map(r => r.h)).map(x => `<span class="chip">${x[0]}–${x[1]} h</span>`).join("");
     const clave = d.d.replace(/-/g, "");
     t += `<tr><td class='izq'>${AQ.diaSem(d.d)} ${AQ.fechaTxt(d.d)}</td><td class='izq'>${tr}</td><td>${d.horas}</td>` +
-      `<td>${f(d.kWh, 1)}</td><td>${f(d.kWh / d.horas, 2)}</td><td>${f(d.Text, 1)}</td><td>${f(d.Tanillo, 1)}</td><td>${f(d.eer, 2)}</td>` +
+      `<td>${f(d.kWh, 1)}</td><td>${f(d.kWh / d.horas, 2)}</td><td>${f(d.Text, 1)}</td><td>${f(d.Tanillo, 1)}</td><td>${f(d.eer, 2)}</td><td>${f(d.C_pvpc, 2)}</td><td>${f(d.C_spot, 2)}</td>` +
       `<td class='izq'><a href="${clave}/interactivo.html">interactivo</a> · <a href="${clave}/informe.html">imágenes</a> · <a href="sinoptico.html#${clave}">sinóptico</a></td></tr>`;
   });
   $("tabla").innerHTML = porDia.length ? t : "<tr><td class='izq'>Ninguna hora cumple el filtro.</td></tr>";
