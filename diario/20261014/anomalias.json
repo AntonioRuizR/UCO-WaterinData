@@ -1,0 +1,74 @@
+[
+{
+"d": "2026-10-14",
+"tipo": "Vitrina sobre consigna",
+"equipo": "Vitrina 1",
+"inicio": "02:13",
+"fin": "06:55",
+"min": 282,
+"detalle": "T producto hasta 4.0 K por encima de la consigna (fuera de desescarche)"
+},
+{
+"d": "2026-10-14",
+"tipo": "Hueco de datos",
+"equipo": "CLIMA",
+"inicio": "09:01",
+"fin": "23:59",
+"min": 899,
+"detalle": "Sin registros en CLIMA"
+},
+{
+"d": "2026-10-14",
+"tipo": "Hueco de datos",
+"equipo": "CONSUMO",
+"inicio": "09:01",
+"fin": "23:59",
+"min": 899,
+"detalle": "Sin registros en CONSUMO"
+},
+{
+"d": "2026-10-14",
+"tipo": "Hueco de datos",
+"equipo": "PRODUCCION",
+"inicio": "09:01",
+"fin": "23:59",
+"min": 899,
+"detalle": "Sin registros en PRODUCCION"
+},
+{
+"d": "2026-10-14",
+"tipo": "Hueco de datos",
+"equipo": "VALVULAS",
+"inicio": "09:01",
+"fin": "23:59",
+"min": 899,
+"detalle": "Sin registros en VALVULAS"
+},
+{
+"d": "2026-10-14",
+"tipo": "Hueco de datos",
+"equipo": "VITRINAS",
+"inicio": "09:01",
+"fin": "23:59",
+"min": 899,
+"detalle": "Sin registros en VITRINAS"
+},
+{
+"d": "2026-10-14",
+"tipo": "Presión baja",
+"equipo": "Anillo (entrada BdC)",
+"inicio": "00:00",
+"fin": "09:01",
+"min": 542,
+"detalle": "Presión mínima 0.60 bar (< 1.0 bar)"
+},
+{
+"d": "2026-10-14",
+"tipo": "Presión baja",
+"equipo": "Anillo (entrada aero)",
+"inicio": "00:00",
+"fin": "09:01",
+"min": 542,
+"detalle": "Presión mínima 0.63 bar (< 1.0 bar)"
+}
+]

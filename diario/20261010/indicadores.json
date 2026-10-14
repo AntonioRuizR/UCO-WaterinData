@@ -1,0 +1,77 @@
+{
+ "firma": {
+  "CLIMA": [
+   "20261010_CLIMA.csv",
+   1791669600.0,
+   1233373
+  ],
+  "CONSUMO": [
+   "20261010_CONSUMO.csv",
+   1791669600.0,
+   7285149
+  ],
+  "PRODUCCION": [
+   "20261010_PRODUCCION.csv",
+   1791669600.0,
+   1493690
+  ],
+  "VALVULAS": [
+   "20261010_VALVULAS.csv",
+   1791669600.0,
+   7458047
+  ],
+  "VITRINAS": [
+   "20261010_VITRINAS.csv",
+   1791669600.0,
+   3753247
+  ],
+  "PRECIOS": "f2d03bc8dd64374d"
+ },
+ "version": 1,
+ "indicadores": {
+  "kWh Vitrina 1": 2.623,
+  "kWh Vitrina 2": 4.673,
+  "kWh Vitrina 3": 6.386,
+  "kWh Vitrina 4": 19.911,
+  "kWh Vitrina 5": 13.966,
+  "kWh Vitrina 6": 11.251,
+  "kWh Bomba de calor": 1.161,
+  "kWh Aeroenfriador": 0.464,
+  "kWh Bombas": 5.886,
+  "kWh Fan coil 1": 0.0,
+  "kWh Fan coil 2": 0.0,
+  "kWh Aerotermia": 0.359,
+  "kWh R. aerotermia": 0.0,
+  "kWh total": 66.67999999999999,
+  "Calor cedido por vitrinas al anillo (kWh térmicos, aprox.)": 84.6454453993336,
+  "Calor en aeroenfriador STA-2, Tret−Timp (kWh térmicos, aprox.)": -79.11837953015375,
+  "Frío entregado dep. 2 STA-11 (kWh térmicos, aprox.)": -0.007796359792391201,
+  "EER aprox. BdC + dep. 2 (día)": null,
+  "BdC en marcha EST=3 (h)": 0.0,
+  "Ventilador aero >0 (h)": 2.7469444444444444,
+  "T ext mín / media / máx (°C)": "12,6 / 19,9 / 26,9",
+  "Datos registrados, peor fichero (%)": 100.0,
+  "Coste energía PVPC 2.0TD (€, sin imp.)": 10.426921402000007,
+  "Coste energía PVPC 2.0TD (€, con IEE+IVA)": 13.261622056859316,
+  "Precio medio del día PVPC 2.0TD (€/MWh)": 155.26999999999998,
+  "Precio pagado PVPC 2.0TD (€/MWh)": 156.37254652069583,
+  "Precio pagado / medio PVPC 2.0TD": 1.0071008341643322,
+  "Coste energía Mercado diario (€, sin imp.)": 8.711717488000005,
+  "Coste energía Mercado diario (€, con IEE+IVA)": 11.08011658837551,
+  "Precio medio del día Mercado diario (€/MWh)": 129.99595833333333,
+  "Precio pagado Mercado diario (€/MWh)": 130.64963239352127,
+  "Precio pagado / medio Mercado diario": 1.0050284183336824,
+  "Coste Vitrinas con PVPC 2.0TD (€, sin imp.)": 9.218111062000006,
+  "Coste Bomba de calor con PVPC 2.0TD (€, sin imp.)": 0.1797260960000001,
+  "Coste Aeroenfriador con PVPC 2.0TD (€, sin imp.)": 0.05990757000000003,
+  "Coste Bombas con PVPC 2.0TD (€, sin imp.)": 0.9137623940000008,
+  "Coste Fan coils con PVPC 2.0TD (€, sin imp.)": 0.0,
+  "Coste Aerotermia + R con PVPC 2.0TD (€, sin imp.)": 0.055414280000000024,
+  "Coste Vitrinas con Mercado diario (€, sin imp.)": 7.700030393000006,
+  "Coste Bomba de calor con Mercado diario (€, sin imp.)": 0.15045547260000014,
+  "Coste Aeroenfriador con Mercado diario (€, sin imp.)": 0.04979761700000002,
+  "Coste Bombas con Mercado diario (€, sin imp.)": 0.7650343414000006,
+  "Coste Fan coils con Mercado diario (€, sin imp.)": 0.0,
+  "Coste Aerotermia + R con Mercado diario (€, sin imp.)": 0.04639966400000002
+ }
+}

@@ -7,7 +7,7 @@
   ],
   "CONSUMO": [
    "20260726_CONSUMO.csv",
-   1790261573.7964728,
+   1790261573.0,
    7197513
   ],
   "PRODUCCION": [
@@ -17,7 +17,7 @@
   ],
   "VALVULAS": [
    "20260726_VALVULAS.csv",
-   1790261575.987446,
+   1790261575.0,
    7545743
   ],
   "VITRINAS": [
@@ -43,7 +43,7 @@
   "kWh Aerotermia": 0.354,
   "kWh R. aerotermia": 0.0,
   "kWh total": 136.173,
-  "Calor cedido por vitrinas al anillo (kWh térmicos, aprox.)": 112.46896859236426,
+  "Calor cedido por vitrinas al anillo (kWh térmicos, aprox.)": 112.46896859236429,
   "Calor en aeroenfriador STA-2, Tret−Timp (kWh térmicos, aprox.)": 0.0,
   "Frío entregado dep. 2 STA-11 (kWh térmicos, aprox.)": 139.3141928834665,
   "EER aprox. BdC + dep. 2 (día)": 2.751939650827011,
