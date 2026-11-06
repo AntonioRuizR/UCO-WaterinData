@@ -1,0 +1,38 @@
+[
+{
+"d": "2026-10-16",
+"tipo": "Vitrina sobre consigna",
+"equipo": "Vitrina 1",
+"inicio": "00:00",
+"fin": "00:44",
+"min": 44,
+"detalle": "T producto hasta 4.1 K por encima de la consigna (fuera de desescarche)"
+},
+{
+"d": "2026-10-16",
+"tipo": "Presión baja",
+"equipo": "Anillo (entrada BdC)",
+"inicio": "00:00",
+"fin": "23:59",
+"min": 1440,
+"detalle": "Presión mínima 0.63 bar (< 1.0 bar)"
+},
+{
+"d": "2026-10-16",
+"tipo": "Presión baja",
+"equipo": "Anillo (entrada aero)",
+"inicio": "00:00",
+"fin": "23:59",
+"min": 1440,
+"detalle": "Presión mínima 0.62 bar (< 1.0 bar)"
+},
+{
+"d": "2026-10-16",
+"tipo": "Ventilador incoherente",
+"equipo": "Aeroenfriador",
+"inicio": "13:41",
+"fin": "23:59",
+"min": 618,
+"detalle": "Ventilador > 0 % con potencia < 0.1 kW"
+}
+]

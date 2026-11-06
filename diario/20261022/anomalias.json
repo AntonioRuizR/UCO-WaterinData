@@ -1,0 +1,83 @@
+[
+{
+"d": "2026-10-22",
+"tipo": "Vitrina sobre consigna",
+"equipo": "Vitrina 1",
+"inicio": "01:45",
+"fin": "06:51",
+"min": 306,
+"detalle": "T producto hasta 4.5 K por encima de la consigna (fuera de desescarche)"
+},
+{
+"d": "2026-10-22",
+"tipo": "Vitrina apagada",
+"equipo": "Vitrina 1",
+"inicio": "13:58",
+"fin": "23:59",
+"min": 602,
+"detalle": "VIT_ONOFF = Falso"
+},
+{
+"d": "2026-10-22",
+"tipo": "Vitrina apagada",
+"equipo": "Vitrina 2",
+"inicio": "13:58",
+"fin": "23:59",
+"min": 602,
+"detalle": "VIT_ONOFF = Falso"
+},
+{
+"d": "2026-10-22",
+"tipo": "Vitrina apagada",
+"equipo": "Vitrina 3",
+"inicio": "13:59",
+"fin": "23:59",
+"min": 601,
+"detalle": "VIT_ONOFF = Falso"
+},
+{
+"d": "2026-10-22",
+"tipo": "Vitrina apagada",
+"equipo": "Vitrina 4",
+"inicio": "13:59",
+"fin": "23:59",
+"min": 601,
+"detalle": "VIT_ONOFF = Falso"
+},
+{
+"d": "2026-10-22",
+"tipo": "Vitrina apagada",
+"equipo": "Vitrina 5",
+"inicio": "13:59",
+"fin": "23:59",
+"min": 601,
+"detalle": "VIT_ONOFF = Falso"
+},
+{
+"d": "2026-10-22",
+"tipo": "Vitrina apagada",
+"equipo": "Vitrina 6",
+"inicio": "13:59",
+"fin": "23:59",
+"min": 600,
+"detalle": "VIT_ONOFF = Falso"
+},
+{
+"d": "2026-10-22",
+"tipo": "Presión baja",
+"equipo": "Anillo (entrada BdC)",
+"inicio": "00:00",
+"fin": "23:59",
+"min": 1440,
+"detalle": "Presión mínima 0.00 bar (< 1.0 bar)"
+},
+{
+"d": "2026-10-22",
+"tipo": "Presión baja",
+"equipo": "Anillo (entrada aero)",
+"inicio": "00:00",
+"fin": "23:59",
+"min": 1440,
+"detalle": "Presión mínima 0.00 bar (< 1.0 bar)"
+}
+]

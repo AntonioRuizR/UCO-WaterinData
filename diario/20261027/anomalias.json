@@ -1,0 +1,128 @@
+[
+{
+"d": "2026-10-27",
+"tipo": "Vitrina sobre consigna",
+"equipo": "Vitrina 1",
+"inicio": "00:00",
+"fin": "01:51",
+"min": 111,
+"detalle": "T producto hasta 4.6 K por encima de la consigna (fuera de desescarche)"
+},
+{
+"d": "2026-10-27",
+"tipo": "Vitrina sobre consigna",
+"equipo": "Vitrina 4",
+"inicio": "00:00",
+"fin": "00:31",
+"min": 32,
+"detalle": "T producto hasta 3.8 K por encima de la consigna (fuera de desescarche)"
+},
+{
+"d": "2026-10-27",
+"tipo": "Vitrina sobre consigna",
+"equipo": "Vitrina 4",
+"inicio": "00:33",
+"fin": "01:14",
+"min": 41,
+"detalle": "T producto hasta 3.7 K por encima de la consigna (fuera de desescarche)"
+},
+{
+"d": "2026-10-27",
+"tipo": "Vitrina sobre consigna",
+"equipo": "Vitrina 4",
+"inicio": "01:16",
+"fin": "01:55",
+"min": 39,
+"detalle": "T producto hasta 4.3 K por encima de la consigna (fuera de desescarche)"
+},
+{
+"d": "2026-10-27",
+"tipo": "Vitrina sobre consigna",
+"equipo": "Vitrina 4",
+"inicio": "03:10",
+"fin": "03:47",
+"min": 37,
+"detalle": "T producto hasta 3.4 K por encima de la consigna (fuera de desescarche)"
+},
+{
+"d": "2026-10-27",
+"tipo": "Vitrina sobre consigna",
+"equipo": "Vitrina 4",
+"inicio": "03:49",
+"fin": "04:23",
+"min": 34,
+"detalle": "T producto hasta 3.3 K por encima de la consigna (fuera de desescarche)"
+},
+{
+"d": "2026-10-27",
+"tipo": "Vitrina sobre consigna",
+"equipo": "Vitrina 4",
+"inicio": "04:25",
+"fin": "04:56",
+"min": 31,
+"detalle": "T producto hasta 3.3 K por encima de la consigna (fuera de desescarche)"
+},
+{
+"d": "2026-10-27",
+"tipo": "Vitrina sobre consigna",
+"equipo": "Vitrina 5",
+"inicio": "00:07",
+"fin": "00:45",
+"min": 37,
+"detalle": "T producto hasta 3.5 K por encima de la consigna (fuera de desescarche)"
+},
+{
+"d": "2026-10-27",
+"tipo": "Vitrina sobre consigna",
+"equipo": "Vitrina 5",
+"inicio": "00:47",
+"fin": "01:24",
+"min": 37,
+"detalle": "T producto hasta 3.4 K por encima de la consigna (fuera de desescarche)"
+},
+{
+"d": "2026-10-27",
+"tipo": "Vitrina sobre consigna",
+"equipo": "Vitrina 5",
+"inicio": "01:25",
+"fin": "02:00",
+"min": 35,
+"detalle": "T producto hasta 3.4 K por encima de la consigna (fuera de desescarche)"
+},
+{
+"d": "2026-10-27",
+"tipo": "Vitrina sobre consigna",
+"equipo": "Vitrina 5",
+"inicio": "02:02",
+"fin": "02:46",
+"min": 43,
+"detalle": "T producto hasta 3.3 K por encima de la consigna (fuera de desescarche)"
+},
+{
+"d": "2026-10-27",
+"tipo": "Vitrina sobre consigna",
+"equipo": "Vitrina 5",
+"inicio": "02:48",
+"fin": "03:23",
+"min": 35,
+"detalle": "T producto hasta 3.3 K por encima de la consigna (fuera de desescarche)"
+},
+{
+"d": "2026-10-27",
+"tipo": "Vitrina sobre consigna",
+"equipo": "Vitrina 5",
+"inicio": "03:26",
+"fin": "04:01",
+"min": 35,
+"detalle": "T producto hasta 3.2 K por encima de la consigna (fuera de desescarche)"
+},
+{
+"d": "2026-10-27",
+"tipo": "Vitrina sobre consigna",
+"equipo": "Vitrina 5",
+"inicio": "04:06",
+"fin": "04:49",
+"min": 44,
+"detalle": "T producto hasta 3.1 K por encima de la consigna (fuera de desescarche)"
+}
+]

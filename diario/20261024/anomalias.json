@@ -1,0 +1,56 @@
+[
+{
+"d": "2026-10-24",
+"tipo": "Vitrina apagada",
+"equipo": "Vitrina 1",
+"inicio": "00:00",
+"fin": "23:59",
+"min": 1440,
+"detalle": "VIT_ONOFF = Falso"
+},
+{
+"d": "2026-10-24",
+"tipo": "Vitrina apagada",
+"equipo": "Vitrina 2",
+"inicio": "00:00",
+"fin": "23:59",
+"min": 1440,
+"detalle": "VIT_ONOFF = Falso"
+},
+{
+"d": "2026-10-24",
+"tipo": "Vitrina apagada",
+"equipo": "Vitrina 3",
+"inicio": "00:00",
+"fin": "23:59",
+"min": 1440,
+"detalle": "VIT_ONOFF = Falso"
+},
+{
+"d": "2026-10-24",
+"tipo": "Vitrina apagada",
+"equipo": "Vitrina 4",
+"inicio": "00:00",
+"fin": "23:59",
+"min": 1440,
+"detalle": "VIT_ONOFF = Falso"
+},
+{
+"d": "2026-10-24",
+"tipo": "Vitrina apagada",
+"equipo": "Vitrina 5",
+"inicio": "00:00",
+"fin": "23:59",
+"min": 1440,
+"detalle": "VIT_ONOFF = Falso"
+},
+{
+"d": "2026-10-24",
+"tipo": "Vitrina apagada",
+"equipo": "Vitrina 6",
+"inicio": "00:00",
+"fin": "23:59",
+"min": 1440,
+"detalle": "VIT_ONOFF = Falso"
+}
+]
